@@ -1,82 +1,53 @@
+@extends('auth.auth')
 
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@section('htmlheader_title')
+    登录
+@endsection
 
-    <title>Cloudlab</title>
+@section('content')
 
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
-    <style type="text/css">
-        body,td,th { font-family: "Source Sans Pro", sans-serif; }
-        body { background-color: #2B2B2B; }
-    </style>
-</head>
-<body>
-<div class="wrapper">
-
-    <div class="container">
-        <h1>Welcome</h1>
-        {{--<form class="form">--}}
-            {{--<input type="text" placeholder="Username">--}}
-            {{--<input type="password" placeholder="Password">--}}
-            {{--<button type="submit" id="login-button">Login</button>--}}
-        {{--</form>--}}
+    <div class="login-container">
+        <h1>MOOE</h1>
+        <h2>信息安全实验平台</h2>
+        <h4>登录</h4>
         <form method="POST" action="/auth/login"  class="form">
-            {!! csrf_field() !!}
-            @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <ul style="color:red;">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+            <input required type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+            <div>
+                <input required type="email" name="email" placeholder="email" value="{{ old('email') }}">
+            </div>
+
+            <div>
+                <input required name="password" type="password" placeholder="密码">
+            </div>
+            <div class="row">
+                <div class="col col-xs-6 checkbox icheck">
+                    <label style="padding-left: 51%;">
+                        <input name="remember" type="checkbox"> 记住登录
+                    </label>
                 </div>
-            @endif
-            <div>
-                <input type="text" name="name" placeholder="用户名" value="{{ old('name') }}">
+                <div class="col col-xs-6" style="margin-top: 1%">
+
+                    <a  href="{{ url('/password/email') }}" class="text-muted text-center" style="margin:10% 0 0 -60%;">
+                        忘了密码？
+                    </a>
+                </div>
             </div>
 
-            <div>
-                <input type="password" name="password" placeholder="Password" id="password">
-            </div>
+            <div >
+                <button type="submit"  id="login-button">登 录</button>
+            </div><!-- /.col -->
 
-            {{--<div>--}}
-                {{--<input type="checkbox" name="remember"> 记住我--}}
-            {{--</div>--}}
+            <p class="text-muted text-center" style="margin-top: 1%">
+                <small>还没有账号？</small>
+            </p>
+            <div >
+                <a style="width: 42%;margin-left: 29%" class="btn btn-lg btn-info btn-block rounded" href="{{ url('auth/register') }}">注册</a>
+            </div><!-- /.col -->
 
-            <div>
-                <button type="submit" id="login-button">登录</button>
-            </div>
         </form>
     </div>
 
-    <ul class="bg-bubbles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
+@endsection
 
-</div>
 
-<script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript">
-    $('#login-button').click(setTimeout(function(event){
-        event.preventDefault();
-        $('form').fadeOut(500);
-        $('.wrapper').addClass('form-success');
 
-    },5000)
-    );
-</script>
-</body>
-</html>

@@ -53,29 +53,18 @@ return [
             'prefix'   => '',
         ],
 
-        'mysql-dba' => [
+        'mysql' => [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'cloudlab'),
-            'username'  => env('DB_USERNAME_DBA', 'cloudlab-dba'),
-            'password'  => env('DB_PASSWORD_DBA', ''),
-            'charset'   => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
+            'database'  => env('DB_DATABASE', 'forge'),
+            'username'  => env('DB_USERNAME', 'forge'),
+            'password'  => env('DB_PASSWORD', ''),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
             'strict'    => false,
         ],
 
-        'mysql-dev' => [
-            'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'cloudlab'),
-            'username'  => env('DB_USERNAME', 'cloudlab-dev'),
-            'password'  => env('DB_PASSWORD', ''),
-            'charset'   => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix'    => '',
-            'strict'    => false,
-        ],
 
         'pgsql' => [
             'driver'   => 'pgsql',
