@@ -7,12 +7,12 @@
 @section('content')
     <section id="content" class="m-t-lg wrapper-md animated fadeInUp">
         <div class="container aside-xl">
-            <a class="navbar-brand block" href="index.php?r=user/logined"><span class="h1 font-bold">CUC13计科</span></a>
+            <a class="navbar-brand block" href="{{ url('home') }}"><span class="h1 font-bold">CUC13计科</span></a>
             <section class="m-b-lg">
                 <header class="wrapper text-center">
                     <strong>登录</strong>
                 </header>
-                <form action="{{ url('auth/login') }}" method="post">
+                <form  action="{{ url('auth/login') }}" method="post">
                     <input required type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                     <div class="form-group">
                         <input required id="email" name="email" type="email"  value="{{ old('email') }}" placeholder="邮箱"
@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <div style="padding-top: 2%" class="col-sm-6">
-                                <a style="color: #4cb6cb" herf="#">忘记密码？</a>
+                                <a  href="{{ url('/password/email') }}" style="color: #4cb6cb" herf="#">忘记密码？</a>
                             </div>
                         </div>
                     </div>

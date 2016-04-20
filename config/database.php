@@ -64,6 +64,18 @@ return [
             'prefix'    => '',
             'strict'    => false,
         ],
+        'mysql-dev' => [
+            'driver'    => 'mysql',
+            'host'      => env('DB_HOST', 'localhost'),
+            'database'  => env('DB_DATABASE', 'cloudlab'),
+            'username'  => env('DB_USERNAME', 'cloudlab-dev'),
+            'password'  => env('DB_PASSWORD', ''),
+            'charset'   => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
+
 
 
         'pgsql' => [

@@ -12,7 +12,6 @@
 */
 
 Route::get('/', function () {
-   // return 234214;
     return view('auth.login');
 });
 
@@ -24,7 +23,10 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-Route::get('profile','UserController@profile');
+Route::controllers([
+    'home' => 'HomeController',
+]);
+
 
 // 发送密码重置链接路由
 Route::get('password/email', 'Auth\PasswordController@getEmail');

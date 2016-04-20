@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
-    <section id="content" class="m-t-lg wrapper-md animated fadeInDown">
+    <section id="content"class="m-t-lg wrapper-md animated fadeInDown">
         <div class="container aside-xl">
-            <a class="navbar-brand block" href="index.html"><span class="h1 font-bold">CUC13计科</span></a>
+            <a class="navbar-brand block" href="{{ url('home') }}"><span class="h1 font-bold">CUC13计科</span></a>
             <section class="m-b-lg">
                 <header class="wrapper text-center">
                     <strong>注册</strong>

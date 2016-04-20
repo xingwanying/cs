@@ -5,32 +5,34 @@
 @endsection
 
 @section('content')
-    <div class="login-container">
-        <h1>MOOE</h1>
-        <h2>信息安全实验平台</h2>
-        <h4>密码找回</h4>
-        <form method="POST" action="/password/email"  class="form">
-            <input required type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-            <div >
-                <input  required name="email" type="email" value="{{ old('email') }}" placeholder="邮箱">
-            </div>
+    <section id="content"class="m-t-lg wrapper-md animated fadeInDown">
+        <div class="container aside-xl">
+            <a class="navbar-brand block" href="{{ url('home') }}"><span class="h1 font-bold">CUC13计科</span></a>
+            <section class="m-b-lg">
+                <header class="wrapper text-center">
+                    <strong>密码找回</strong>
+                </header>
+                <form action="{{ url('/password/email') }}" method="post">
+                    <input required type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                    <div class="form-group">
+                        <input name="email" type="email" value="{{ old('email') }}" placeholder="邮箱"
+                               class="form-control rounded input-lg text-center no-border">
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-default lt b-white b-2x btn-block btn-rounded">
+                        <span class="m-r-n-lg">发送重置密码链接</span></button>
+                    <div class="line line-dashed"></div>
+                    <p class="text-muted text-center">
+                        <small>还没有账户？</small>
+                    </p>
+                    <button type="submit" class="btn btn-lg btn-info btn-block btn-rounded">注册</button>
 
-            <div >
-                <button type="submit"  id="login-button">发送密码重置链接</button>
-            </div><!-- /.col -->
-            <p class="text-muted text-center" style="margin-top: 1%">
-                <small>已经有账号？</small>
-            </p>
-            <div >
-                <a style="width: 42%;margin-left: 29%" class="btn btn-lg btn-info btn-block rounded" href="{{ url('auth/login') }}">登录</a>
-            </div>
-
-            <p class="text-muted text-center" style="margin-top: 1%">
-                <small>还没有账号？</small>
-            </p>
-            <div >
-                <a style="width: 42%;margin-left: 29%" class="btn btn-lg btn-info btn-block rounded" href="{{ url('auth/register') }}">注册</a>
-            </div><!-- /.col -->
-        </form>
-    </div>
+                    <div class="line line-dashed"></div>
+                    <p class="text-muted text-center">
+                        <small>已经有了账户？</small>
+                    </p>
+                    <a href="{{ url('auth/login') }}" class="btn btn-lg btn-warning  btn-block btn-rounded">登录</a>
+                </form>
+            </section>
+        </div>
+    </section>
 @endsection

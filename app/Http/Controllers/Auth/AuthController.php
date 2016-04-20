@@ -63,6 +63,8 @@ class AuthController extends Controller
         ]);
     }
 
-    protected $redirectPath = '/profile';
-    protected $username = 'name';
+    protected $username = 'email';
+    protected $loginPath = '/auth/login';
+    protected $redirectAfterLogout = '/auth/login';
+    protected $redirectTo = '/auth/login';
 }
