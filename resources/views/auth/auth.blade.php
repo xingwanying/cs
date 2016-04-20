@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 
-@include('auth.header')
 @if (count($errors) > 0)
     <div class="alert alert-danger">
         <strong>天啦噜！</strong> 出错了囧：<br><br>
@@ -17,22 +16,11 @@
         {{ session('status') }}
     </div>
 @endif
-<body style="background: #83D8CF;">
-    @yield('content')
-    <ul class="bg-bubbles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-    @include('auth.scripts')
-</body>
+
+@include('partials.htmlheader')
+@yield('content')
+@include('auth.footer')
+@include('partials.scripts')
 
 <script>
     $(function () {
@@ -42,12 +30,7 @@
             increaseArea: '20%' // optional
         });
     });
-    $('#login-button').click(setTimeout(function(event){
-                event.preventDefault();
-                $('form').fadeOut(500);
-                $('.login-wrapper').addClass('form-success');
-            },5000)
-    );
+
 </script>
 
 </html>
