@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
    // return 234214;
-    return view('home');
+    return view('auth.login');
 });
 
 // 认证路由...
