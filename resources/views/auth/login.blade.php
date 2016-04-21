@@ -1,53 +1,54 @@
-@extends('auth.auth')
+<!DOCTYPE html>
 
-@section('htmlheader_title')
-    登录
-@endsection
+    <html>
+    <head>
+        <title>CUC13计科</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link href="{{ asset('/css/login.css') }}" rel="stylesheet" type="text/css" />
 
-@section('content')
-    <section id="content" class="m-t-lg wrapper-md animated fadeInUp">
-        <div class="container aside-xl">
-            <a class="navbar-brand block" href="{{ url('home') }}"><span class="h1 font-bold">CUC13计科</span></a>
-            <section class="m-b-lg">
-                <header class="wrapper text-center">
-                    <strong>登录</strong>
-                </header>
-                <form  action="{{ url('auth/login') }}" method="post">
-                    <input required type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                    <div class="form-group">
-                        <input required id="email" name="email" type="email"  value="{{ old('email') }}" placeholder="邮箱"
-                               class="form-control rounded input-lg text-center no-border">
-                    </div>
-                    <div class="form-group">
-                        <input required name="password" type="password" placeholder="密码" class="form-control rounded input-lg text-center no-border">
-                    </div>
-                    <div  class="form-group">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="checkbox i-checks m-b">
-                                    <label class="m-l">
-                                        <input type="checkbox" name="remember" checked=""><i></i>记住我
-                                    </label>
-                                </div>
-                            </div>
-                            <div style="padding-top: 2%" class="col-sm-6">
-                                <a  href="{{ url('/password/email') }}" style="color: #4cb6cb" herf="#">忘记密码？</a>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-muted text-center"><smaill id="res"></smaill></p>
-                    <button type="submit" class="btn btn-lg btn-warning lt b-white b-2x btn-block btn-rounded"><i
-                                class="icon-arrow-right pull-right"></i><span class="m-r-n-lg">登录</span></button>
-                    <div class="line line-dashed"></div>
-                    <p class="text-muted text-center">
-                        <small>还没有账号？</small>
-                    </p>
-                    <a href="{{ url('auth/register') }}" class="btn btn-lg btn-info btn-block rounded">新建一个账号</a>
-                </form>
-            </section>
+    </head>
+
+    <body>
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <strong>天啦噜！</strong> 出错了囧：<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
-    </section>
-@endsection
+        @endif
+    <!-- Header -->
+    <header id="header">
+        <h1>CUCCS</h1>
+        <p>关注我们<br />
+            微信公众号：13计算机科学与技术</p>
+    </header>
 
+    <!-- Signup Form -->
+    <form id="signup-form" action="{{ url('auth/login') }}" method="post">
+        <input required type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+        <input required id="email" name="email" type="email"  value="{{ old('email') }}" placeholder="邮箱">
+        <input required name="password" type="password" placeholder="密码" class="form-control rounded input-lg text-center no-border">
+        <button type="submit" >登录</button>
+    </form>
+    <!-- Footer -->
+    <footer id="footer">
+        <a  href="{{ url('/password/email') }}" style="color: #4cb6cb" herf="#">忘记密码？</a>
 
+        <p>
+            <small>还没有账号？</small>
+            <a href="{{ url('auth/register') }}" class="btn btn-lg btn-info btn-block rounded">新建一个账号</a>
+        </p>
+        <ul class="copyright">
+            <li>&copy; 2013</li><li>CUC | 理工学部 ｜ 计算机科学与技术</li>
+        </ul>
+    </footer>
 
+    <!-- Scripts -->
+    <script src="{{ asset('/js/login.js') }}"></script>
+
+    </body>
+</html>

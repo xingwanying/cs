@@ -6,14 +6,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="{{ asset('/css/main.css') }}" rel="stylesheet" type="text/css" />
-    <!--[if lte IE 8]><link href="{{ asset('/css/ie8.css') }}" rel="stylesheet" type="text/css" /><![endif]-->
-    <!--[if lte IE 9]><link href="{{ asset('/css/ie9.css') }}" rel="stylesheet" type="text/css" /><![endif]-->
-    <!--[if lt IE 9]>
-    <script src="{{ asset('/js/ie/html5shiv.js') }}"></script>
-    <script src="{{ asset('/js/ie/respond.min.js') }}"></script>
-    <script src="{{ asset('/js/ie/excanvas.js') }}"></script>
-    <![endif]-->
-
 </head>
 <body class="landing">
 

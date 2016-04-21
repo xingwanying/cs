@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Cache\RateLimiter;
 use Illuminate\Support\Facades\Lang;
 
-trait ThrottlesLogins
+trait  ThrottlesLogins
 {
     /**
      * Determine if the user has too many failed login attempts.
