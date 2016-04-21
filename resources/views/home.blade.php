@@ -85,15 +85,14 @@
     <section id="one" class="wrapper style1 special">
         <div class="inner">
             <header class="major">
-                <h2>Arcu aliquet vel lobortis ata nisl<br />
-                    eget augue amet aliquet nisl cep donec</h2>
-                <p>Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend<br />
-                    fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
+                <h2>中国传媒大学2013级计算机科学与技术班级介绍</h2>
+                <p>少数名族 10人 / 30人</p>
+                <p>这是介绍巴拉巴拉巴巴巴巴巴我还没想好，写点儿啥呢？<br>
+                    占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑</p>
             </header>
             <ul class="icons major">
-                <li><span class="icon fa-diamond major style1"><span class="label">Lorem</span></span></li>
-                <li><span class="icon fa-heart-o major style2"><span class="label">Ipsum</span></span></li>
-                <li><span class="icon fa-code major style3"><span class="label">Dolor</span></span></li>
+                <li>班主任：张晶晶</li>
+                <li>辅导员：王曼霖</li>
             </ul>
         </div>
     </section>
@@ -103,173 +102,110 @@
         <div class="reel">
 
             <article>
-                <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-                <header>
-                    <h3><a href="#">Pulvinar sagittis congue</a></h3>
-                </header>
-                <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                <a href="#" class="image featured"><img id="cover" src="images/1.jpg" /></a>
             </article>
-
             <article>
-                <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-                <header>
-                    <h3><a href="#">Fermentum sagittis proin</a></h3>
-                </header>
-                <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                <a href="#" class="image featured"><img id="cover" src="images/2.jpg" /></a>
             </article>
-
             <article>
-                <a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-                <header>
-                    <h3><a href="#">Sed quis rhoncus placerat</a></h3>
-                </header>
-                <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                <a href="#" class="image featured"><img id="cover" src="images/3.jpg" /></a>
             </article>
-
             <article>
-                <a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
-                <header>
-                    <h3><a href="#">Ultrices urna sit lobortis</a></h3>
-                </header>
-                <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                <a href="#" class="image featured"><img id="cover" src="images/4.jpg" /></a>
             </article>
-
             <article>
-                <a href="#" class="image featured"><img src="images/pic05.jpg" alt="" /></a>
-                <header>
-                    <h3><a href="#">Varius magnis sollicitudin</a></h3>
-                </header>
-                <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                <a href="#" class="image featured"><img id="cover" src="images/5.jpg" /></a>
             </article>
-
             <article>
-                <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-                <header>
-                    <h3><a href="#">Pulvinar sagittis congue</a></h3>
-                </header>
-                <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                <a href="#" class="image featured"><img id="cover" src="images/6.jpg" /></a>
             </article>
-
             <article>
-                <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-                <header>
-                    <h3><a href="#">Fermentum sagittis proin</a></h3>
-                </header>
-                <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                <a href="#" class="image featured"><img id="cover" src="images/7.jpg" /></a>
             </article>
-
             <article>
-                <a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-                <header>
-                    <h3><a href="#">Sed quis rhoncus placerat</a></h3>
-                </header>
-                <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                <a href="#" class="image featured"><img id="cover" src="images/9.jpg" /></a>
             </article>
-
             <article>
-                <a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
-                <header>
-                    <h3><a href="#">Ultrices urna sit lobortis</a></h3>
-                </header>
-                <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
-            </article>
-
-            <article>
-                <a href="#" class="image featured"><img src="images/pic05.jpg" alt="" /></a>
-                <header>
-                    <h3><a href="#">Varius magnis sollicitudin</a></h3>
-                </header>
-                <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                <a href="#" class="image featured"><img id="cover" src="images/8.jpg" /></a>
             </article>
 
         </div>
     </section>
-
     <!-- Two -->
-    <section id="two" class="wrapper alt style2">
-        <section class="spotlight">
-            <div class="image"><img src="images/pic01.jpg" alt="" /></div><div class="content">
-                <h2>Magna primis lobortis<br />
-                    sed ullamcorper</h2>
-                <p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
-            </div>
-        </section>
-        <section class="spotlight">
-            <div class="image"><img src="images/pic02.jpg" alt="" /></div><div class="content">
-                <h2>Tortor dolore feugiat<br />
-                    elementum magna</h2>
-                <p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
-            </div>
-        </section>
-        <section class="spotlight">
-            <div class="image"><img src="images/pic03.jpg" alt="" /></div><div class="content">
-                <h2>Augue eleifend aliquet<br />
-                    sed condimentum</h2>
-                <p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
-            </div>
-        </section>
-    </section>
-
-    <!-- Three -->
     <section id="three" class="wrapper style3 special">
         <div class="inner">
             <header class="major">
-                <h2>Accumsan mus tortor nunc aliquet</h2>
-                <p>Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend<br />
-                    fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
+                <h2>这里放资讯？或者其他什么都可以</h2>
+                <p>占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑<br />
+                    占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑</p>
             </header>
             <ul class="features">
                 <li class="icon fa-paper-plane-o">
-                    <h3>Arcu accumsan</h3>
-                    <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-                </li>
-                <li class="icon fa-laptop">
-                    <h3>Ac Augue Eget</h3>
-                    <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-                </li>
-                <li class="icon fa-code">
-                    <h3>Mus Scelerisque</h3>
-                    <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-                </li>
-                <li class="icon fa-headphones">
-                    <h3>Mauris Imperdiet</h3>
-                    <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-                </li>
-                <li class="icon fa-heart-o">
-                    <h3>Aenean Primis</h3>
-                    <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+                    <h3>党团建设</h3>
+                    <p>占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑</p>
                 </li>
                 <li class="icon fa-flag-o">
-                    <h3>Tortor Ut</h3>
-                    <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+                    <h3>党团建设</h3>
+                    <p>占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑</p>
+                </li>
+                <li class="icon fa-flag-o">
+                    <h3>党团建设</h3>
+                    <p>占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑</p>
+                </li>
+                <li class="icon fa-flag-o">
+                    <h3>党团建设</h3>
+                    <p>占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑</p>
+                </li>
+                <li class="icon fa-flag-o">
+                    <h3>党团建设</h3>
+                    <p>占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑</p>
+                </li>
+                <li class="icon fa-flag-o">
+                    <h3>党团建设</h3>
+                    <p>占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑</p>
                 </li>
             </ul>
         </div>
+    </section>
+    <!-- Three -->
+    <section id="two" class="wrapper alt style2">
+        <section class="spotlight">
+            <div class="image"><img src="images/10.jpg" alt="" /></div><div class="content">
+                <h2>活动名称</h2>
+                <p>活动的内容描述<br>继续占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占</p>
+            </div>
+        </section>
+        <section class="spotlight">
+            <div class="image"><img src="images/11.jpg" alt="" /></div><div class="content">
+                <h2>活动名称</h2>
+                <p>活动的内容描述<br>继续占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占</p>
+            </div>
+        </section>
+        <section class="spotlight">
+            <div class="image"><img src="images/5.jpg" alt="" /></div><div class="content">
+                <h2>活动名称</h2>
+                <p>活动的内容描述<br>继续占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占坑占</p>
+            </div>
+        </section>
     </section>
 
     <!-- CTA -->
     <section id="cta" class="wrapper style4">
         <div class="inner">
             <header>
-                <h2>Arcue ut vel commodo</h2>
-                <p>Aliquam ut ex ut augue consectetur interdum endrerit imperdiet amet eleifend fringilla.</p>
+                <h2>微信公众平台</h2>
+                <p>账号：13计算机科学与技术</p>
+                <p>来一段功能介绍巴拉巴拉巴啦巴拉巴拉巴拉巴拉巴啦巴拉巴拉拉巴拉巴拉巴啦巴拉巴拉</p>
             </header>
             <ul class="actions vertical">
-                <li><a href="#" class="button fit special">Activate</a></li>
-                <li><a href="#" class="button fit">Learn More</a></li>
+                <img style="width: 70%" src="images/q.jpg">
+                <h2 style="margin-left: 10%"> 扫  一  扫</h2>
             </ul>
         </div>
     </section>
 
     <!-- Footer -->
     <footer id="footer">
-        <ul class="icons">
-            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-            <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-        </ul>
         <ul class="copyright">
             <li>&copy; 2013</li><li>CUC | 理工学部 ｜ 计算机科学与技术</li>
         </ul>
