@@ -25,6 +25,7 @@
                     <div class="form-group">
                         <input  name="password_confirmation" type="Password" placeholder="确认密码" class="form-control rounded input-lg text-center no-border">
                     </div>
+                    <div class="line line-dashed"></div>
                     <button type="submit" class="btn btn-lg btn-info btn-block btn-rounded">重置密码</button>
                 </form>
             </section>

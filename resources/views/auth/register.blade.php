@@ -27,13 +27,15 @@
                     <div class="form-group">
                         <input  name="password_confirmation" type="Password" placeholder="确认密码" class="form-control rounded input-lg text-center no-border">
                     </div>
+                    <div class="line line-dashed"></div>
                     <button type="submit" class="btn btn-lg btn-info btn-block btn-rounded">注册</button>
 
                     <div class="line line-dashed"></div>
                     <p class="text-muted text-center">
                         <small>已经有了账户？</small>
                     </p>
-                    <a href="{{ url('auth/login') }}" class="btn btn-lg btn-warning  btn-block btn-rounded">登录</a>
+                    <a href="{{ url('auth/login') }}" class="btn btn-lg btn-warning lt b-white b-2x btn-block btn-rounded"><i
+                                class="icon-arrow-right pull-right"></i><span class="m-r-n-lg">登录</span></a>
                 </form>
             </section>
         </div>
