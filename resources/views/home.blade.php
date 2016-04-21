@@ -6,7 +6,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="{{ asset('/css/main.css') }}" rel="stylesheet" type="text/css" />
-
     <!--[if lte IE 8]><link href="{{ asset('/css/ie8.css') }}" rel="stylesheet" type="text/css" /><![endif]-->
     <!--[if lte IE 9]><link href="{{ asset('/css/ie9.css') }}" rel="stylesheet" type="text/css" /><![endif]-->
     <!--[if lt IE 9]>
@@ -29,7 +28,27 @@
                 <li class="special">
                     <a href="#menu" class="menuToggle"></a>
                     <div id="menu">
-                        <ul>
+                        <a href="#menu" class="menuToggle"></a>
+                        @if(Auth::check())
+
+                           @if( Auth::user()->avatar_img_url )
+                                <a herf="#"> <img src="{{asset( Auth::user()->avatar_img_url) }}" class="img-circle"
+                                     style="width: 40px;height: 40px;"> </a>
+                            @else
+                                <a herf="#"><img src="{{ asset('/images/m21.jpg') }}" class="img-circle"></a>
+                            @endif
+                               <a style="margin-right: 20%" herf="#"> {{ Auth::user()->name }}</a>
+
+                            <a href="{{ url('auth/logout') }}" class="button default" >注销</a>
+
+                        @else
+                            <ul>
+                                <li><a href="{{  url('auth/login') }}">登录</a></li>
+                                <li><a href="{{  url('auth/register') }}">注册</a></li>
+                            </ul>
+
+                        @endif
+                        <ul style="margin-top: 10%">
                             <li><a href="＃"><i class='fa fa-home'></i>主页</a></li>
                             <li><a href="#"><i class='fa fa-bullhorn'></i>公告</a></li>
                             <li><a href="#"><i class='fa fa-anchor'></i>风采</a></li>
