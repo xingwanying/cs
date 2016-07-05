@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-<html>
+<html lang="zh-cn">
 <head>
     <title>cuc13计科</title>
     <meta charset="utf-8" />
@@ -41,7 +41,7 @@
 
                         @endif
                         <ul style="margin-top: 10%">
-                            <li><a href="＃"><i class='fa fa-home'></i>主页</a></li>
+                            <li><a href="#"><i class='fa fa-home'></i>主页</a></li>
                             <li><a href="#"><i class='fa fa-bullhorn'></i>公告</a></li>
                             <li><a href="#"><i class='fa fa-anchor'></i>风采</a></li>
                             <li><a href="#"><i class='fa fa-group'></i>动态</a></li>

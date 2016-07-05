@@ -43,7 +43,7 @@
             <a href="{{ url('auth/register') }}" class="btn btn-lg btn-info btn-block rounded">新建一个账号</a>
         </p>
         <ul class="copyright">
-            <li>&copy; 2013</li><li>CUC | 理工学部 ｜ 计算机科学与技术</li>
+            <li>&copy; 2013</li><li>CUC  |  理工学部 ｜ 计算机科学与技术</li>
         </ul>
     </footer>
 

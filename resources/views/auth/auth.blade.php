@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="background-color: rgb(226, 225, 202);">
+<html lang="zh-cn" style="background-color: rgb(226, 225, 202);">
 
 
 @include('partials.htmlheader')
