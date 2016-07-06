@@ -5,10 +5,13 @@
     <title>cuc13计科</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/css/main.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/css/mine.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+
     <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="{{ asset('/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/bootstrap3-wysihtml5.css') }}">
 </head>
 <body class="landing">
 
@@ -76,7 +79,9 @@
 <script src="{{ asset('/js/util.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/js/main.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/js/mine.js')}}" type="text/javascript"></script>
+<script src="{{ asset('/js/bootstrap.js') }}"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<script src="{{ asset('/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
+<script src="{{ asset('/js/bootstrap3-wysihtml5.all.min.js') }}"></script>
+
 </body>
 </html>

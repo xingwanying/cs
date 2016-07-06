@@ -3,60 +3,46 @@
 
 @section('content')
     <article id="main">
-        <header>
-            <h2>Elements</h2>
-            <p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>
+        <header style="background-image: url('{{ asset('/images/default.jpg') }}')">
+            <h2>文章标题</h2>
+            <p>作者</p>
         </header>
         <section class="wrapper style5">
             <div class="inner">
                 <section>
-                    <h4>图文编辑</h4>
+                    <h2>图文编辑</h2>
                     <form method="post" action="#">
+                        <div class="form-group">
+                            <div class="btn btn-default btn-file">
+                                <i class="fa fa-paperclip"></i>上传封面图片
+                                <input name="photo" required id="fileUpload" type="file"/>
+                            </div>
+                            <p class="help-block">最大不超过1MB</p>
+                        </div>
+
                         <div class="row uniform">
                             <div class="6u 12u$(xsmall)">
-                                <input type="text" name="demo-name" id="demo-name" value="" placeholder="Name">
+                                <input required type="text" name="title"  value="" placeholder="文章标题">
                             </div>
-                            <div class="6u$ 12u$(xsmall)">
-                                <input type="email" name="demo-email" id="demo-email" value="" placeholder="Email">
-                            </div>
-                            <div class="12u$">
+                            <div class="6u$ 12u$">
                                 <div class="select-wrapper">
-                                    <select name="demo-category" id="demo-category">
-                                        <option value="">- Category -</option>
-                                        <option value="1">Manufacturing</option>
-                                        <option value="1">Shipping</option>
-                                        <option value="1">Administration</option>
-                                        <option value="1">Human Resources</option>
+                                    <select required name="type" id="demo-category">
+                                        <option>- 选择图文类型 -</option>
+                                        <option value="0">作品</option>
+                                        <option value="1">公告</option>
+                                        <option value="2">实习招聘</option>
+                                        <option value="3">考研资讯</option>
+                                        <option value="3">出国资讯</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="4u 12u$(small)">
-                                <input type="radio" id="demo-priority-low" name="demo-priority" checked="">
-                                <label for="demo-priority-low">Low</label>
-                            </div>
-                            <div class="4u 12u$(small)">
-                                <input type="radio" id="demo-priority-normal" name="demo-priority">
-                                <label for="demo-priority-normal">Normal</label>
-                            </div>
-                            <div class="4u$ 12u$(small)">
-                                <input type="radio" id="demo-priority-high" name="demo-priority">
-                                <label for="demo-priority-high">High</label>
-                            </div>
-                            <div class="6u 12u$(small)">
-                                <input type="checkbox" id="demo-copy" name="demo-copy">
-                                <label for="demo-copy">Email me a copy</label>
-                            </div>
-                            <div class="6u$ 12u$(small)">
-                                <input type="checkbox" id="demo-human" name="demo-human" checked="">
-                                <label for="demo-human">Not a robot</label>
-                            </div>
-                            <div class="12u$">
-                                <textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+                            <div class="12u$" style="width: 100%">
+                                <textarea class="textarea" placeholder="输入图文内容"  id="infoEdit" name="content"></textarea>
                             </div>
                             <div class="12u$">
                                 <ul class="actions">
-                                    <li><input type="submit" value="Send Message" class="special"></li>
-                                    <li><input type="reset" value="Reset"></li>
+                                    <li><input type="reset" value="保存"></li>
+                                    <li><input type="submit" value="取消" class="special"></li>
                                 </ul>
                             </div>
                         </div>

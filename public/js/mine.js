@@ -15,4 +15,19 @@ function getToken() {
     });
 
 
-};
+}
+$(document).ready(function () {
+    //bootstrap WYSIHTML5 - text editor
+    $(".textarea").wysihtml5(
+        {
+        "toolbar": {
+            "html": true,
+            "image": true,
+            "fa": true
+        }
+
+    });
+});
+
+
+
