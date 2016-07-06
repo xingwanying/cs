@@ -76,5 +76,7 @@
 <script src="{{ asset('/js/util.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/js/main.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/js/mine.js')}}" type="text/javascript"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="{{ asset('/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
 </body>
 </html>
