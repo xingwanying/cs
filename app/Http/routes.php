@@ -13,8 +13,6 @@
 
 Route::get('/', "HomeController@index");
 
-Route::get('home', "HomeController@index");
-
 // 认证路由...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
@@ -34,3 +32,8 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 Route::get('default', function () {
     return view('default');
 });
+
+Route::controllers([
+    'home' => 'HomeController',
+    'information' => 'InformationController',
+]);
