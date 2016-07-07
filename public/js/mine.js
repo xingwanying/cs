@@ -27,6 +27,26 @@ $(document).ready(function () {
         }
 
     });
+    //图片预览
+    $("#fileUpload").on('change', function () {
+
+
+        if (typeof (FileReader) != "undefined") {
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var img = e.target.result;
+               $("#main header").css("background-image","url(" +img +")") ;
+            };
+
+            reader.readAsDataURL($(this)[0].files[0]);
+        } else {
+            alert("你的浏览器不支持FileReader接口。无法看到图片预览");
+        }
+    });
+    $("[name='title']").blur(function(){
+        $("#infoTitle").text($("[name='title']").val());
+    });
 });
 
 

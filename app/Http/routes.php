@@ -12,6 +12,7 @@
 */
 
 Route::get('/', "HomeController@index");
+Route::get('home', "HomeController@index");
 
 // 认证路由...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

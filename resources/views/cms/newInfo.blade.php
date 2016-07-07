@@ -4,14 +4,15 @@
 @section('content')
     <article id="main">
         <header style="background-image: url('{{ asset('/images/default.jpg') }}')">
-            <h2>文章标题</h2>
-            <p>作者</p>
+            <h2 id="infoTitle">文章标题</h2>
+            <p>&emsp;</p>
         </header>
         <section class="wrapper style5">
             <div class="inner">
                 <section>
                     <h2>图文编辑</h2>
-                    <form method="post" action="#">
+                    <form action="{{  url('information/create') }}" method="POST"  enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                         <div class="form-group">
                             <div class="btn btn-default btn-file">
                                 <i class="fa fa-paperclip"></i>上传封面图片

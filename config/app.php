@@ -145,6 +145,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         *
+         * Hashids is a small open-source library that generates
+         *  short, unique, non-sequential ids from numbers.
+         */
+
     ],
 
     /*

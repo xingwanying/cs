@@ -13,52 +13,29 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('/css/bootstrap3-wysihtml5.css') }}">
 </head>
+@if (count($errors) > 0)
+    <div class="alert alert-danger" style="margin-bottom: 0px;color:rgb(169, 68, 66) !important;background-color: rgb(235, 204, 209) !important;border-color: rgba(215, 57, 37, 0);">
+        <strong>天啦噜！</strong> 出错了囧：<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+@if (session('status'))
+    <div class="alert alert-success" style="margin-bottom: 0px;">
+        {{ session('status') }}
+    </div>
+@endif
 <body class="landing">
 
 <!-- Page Wrapper -->
 <div id="page-wrapper">
 
     <!-- Header -->
-    <header id="header" class="alt">
-        <h1><a href="{{ url('/home') }}">CUCCS</a></h1>
-        <nav id="nav">
-            <ul>
-                <li class="special">
-                    <a href="#menu" class="menuToggle"></a>
-                    <div id="menu">
-                        <a href="#menu" class="menuToggle"></a>
-                        @if(Auth::check())
-
-                            @if( Auth::user()->avatar_img_url )
-                                <a herf="#"> <img src="{{asset( Auth::user()->avatar_img_url) }}" class="img-circle"
-                                                  style="width: 40px;height: 40px;"> </a>
-                            @else
-                                <a herf="#"><img src="{{ asset('/images/m21.jpg') }}" class="img-circle"></a>
-                            @endif
-                            <a style="margin-right: 20%" herf="#"> {{ Auth::user()->name }}</a>
-
-                            <a href="{{ url('auth/logout') }}" class="button default" >注销</a>
-
-                        @else
-                            <ul>
-                                <li><a href="{{  url('auth/login') }}">登录</a></li>
-                                <li><a href="{{  url('auth/register') }}">注册</a></li>
-                            </ul>
-
-                        @endif
-                        <ul style="margin-top: 10%">
-                            <li><a href="#"><i class='fa fa-home'></i>主页</a></li>
-                            <li><a href="#"><i class='fa fa-bullhorn'></i>公告</a></li>
-                            <li><a href="#"><i class='fa fa-anchor'></i>风采</a></li>
-                            <li><a href="#"><i class='fa fa-group'></i>动态</a></li>
-                            <li><a href="#"><i class='fa fa-info'></i>资讯</a></li>
-                            <li><a href="{{ url('information/create') }}"><i class='fa fa-gears'></i>功能</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-
+    <header id="header" >
+       @include('layouts.header')
     </header>
 
     @yield('content')
