@@ -30,7 +30,7 @@
                     <li><a href="#"><i class='fa fa-anchor'></i>风采</a></li>
                     <li><a href="#"><i class='fa fa-group'></i>动态</a></li>
                     <li><a href="#"><i class='fa fa-info'></i>资讯</a></li>
-                    <li><a href="{{ url('information/create') }}"><i class='fa fa-gears'></i>功能</a></li>
+                    <li><a href="{{ url('information/show') }}"><i class='fa fa-gears'></i>功能</a></li>
                 </ul>
             </div>
         </li>

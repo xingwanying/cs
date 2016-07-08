@@ -150,6 +150,7 @@ return [
          * Hashids is a small open-source library that generates
          *  short, unique, non-sequential ids from numbers.
          */
+        Vinkla\Hashids\HashidsServiceProvider::class
 
     ],
 
@@ -199,6 +200,7 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        'Hashids' => Vinkla\Hashids\Facades\Hashids::class
 
     ],
 

@@ -3322,59 +3322,6 @@
         ]
     },
     {
-        "name": "zzantares/proxmoxve",
-        "version": "v3.0.0",
-        "version_normalized": "3.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/ZzAntares/ProxmoxVE.git",
-            "reference": "ead031673b65b425e0adb137d5f6774e5cdf6f6c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://packagist.phpcomposer.com/files/ZzAntares/ProxmoxVE/ead031673b65b425e0adb137d5f6774e5cdf6f6c.zip",
-            "reference": "ead031673b65b425e0adb137d5f6774e5cdf6f6c",
-            "shasum": ""
-        },
-        "require": {
-            "guzzlehttp/guzzle": "~4.0",
-            "lib-curl": "*",
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "~4.1",
-            "squizlabs/php_codesniffer": "1.*"
-        },
-        "time": "2014-08-11 01:58:38",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "ProxmoxVE\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "César Muñoz",
-                "email": "zzantares@gmail.com",
-                "role": "Developer"
-            }
-        ],
-        "description": "A simple PHP 5.4+ Proxmox API client.",
-        "homepage": "https://github.com/ZzAntares/ProxmoxVE",
-        "keywords": [
-            "KVM",
-            "OpenVZ",
-            "Proxmox",
-            "Virtualization",
-            "api"
-        ]
-    },
-    {
         "name": "squizlabs/php_codesniffer",
         "version": "2.5.1",
         "version_normalized": "2.5.1.0",
@@ -3451,6 +3398,243 @@
         "keywords": [
             "phpcs",
             "standards"
+        ]
+    },
+    {
+        "name": "hashids/hashids",
+        "version": "1.0.6",
+        "version_normalized": "1.0.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ivanakimov/hashids.php.git",
+            "reference": "6bd7ceffb2ccddef6cd64e88f1717f97d131cc3c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://packagist.phpcomposer.com/files/ivanakimov/hashids.php/6bd7ceffb2ccddef6cd64e88f1717f97d131cc3c.zip",
+            "reference": "6bd7ceffb2ccddef6cd64e88f1717f97d131cc3c",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.3.3 || ^7.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.8 || ^5.0"
+        },
+        "time": "2016-01-21 04:26:38",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Hashids\\": "lib/Hashids/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ivan Akimov",
+                "email": "ivan@barreleye.com",
+                "homepage": "https://twitter.com/IvanAkimov"
+            }
+        ],
+        "description": "Generate short, unique, non-sequential ids (like YouTube and Bitly) from numbers.",
+        "homepage": "http://hashids.org/php",
+        "keywords": [
+            "bitly",
+            "decode",
+            "encode",
+            "hash",
+            "hashid",
+            "hashids",
+            "ids",
+            "obfuscate",
+            "youtube"
+        ]
+    },
+    {
+        "name": "graham-campbell/manager",
+        "version": "v2.4.0",
+        "version_normalized": "2.4.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/GrahamCampbell/Laravel-Manager.git",
+            "reference": "fd9052082e2c69c9a67d3e8d7dfa94cb33f8ab0b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://packagist.phpcomposer.com/files/GrahamCampbell/Laravel-Manager/fd9052082e2c69c9a67d3e8d7dfa94cb33f8ab0b.zip",
+            "reference": "fd9052082e2c69c9a67d3e8d7dfa94cb33f8ab0b",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/contracts": "5.1.*|5.2.*|5.3.*",
+            "illuminate/support": "5.1.*|5.2.*|5.3.*",
+            "php": ">=5.5.9"
+        },
+        "require-dev": {
+            "graham-campbell/testbench-core": "^1.1",
+            "mockery/mockery": "^0.9.4",
+            "phpunit/phpunit": "^4.8|^5.0"
+        },
+        "time": "2016-04-26 14:27:59",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GrahamCampbell\\Manager\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Graham Campbell",
+                "email": "graham@alt-three.com"
+            }
+        ],
+        "description": "Manager Provides Some Manager Functionality For Laravel 5",
+        "keywords": [
+            "Graham Campbell",
+            "GrahamCampbell",
+            "Laravel Manager",
+            "Laravel-Manager",
+            "connector",
+            "framework",
+            "interface",
+            "laravel",
+            "manager"
+        ]
+    },
+    {
+        "name": "vinkla/hashids",
+        "version": "2.3.0",
+        "version_normalized": "2.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/vinkla/hashids.git",
+            "reference": "4ff0bb50f0e2a20854246731adf628b294531ea4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://packagist.phpcomposer.com/files/vinkla/hashids/4ff0bb50f0e2a20854246731adf628b294531ea4.zip",
+            "reference": "4ff0bb50f0e2a20854246731adf628b294531ea4",
+            "shasum": ""
+        },
+        "require": {
+            "graham-campbell/manager": "^2.3",
+            "hashids/hashids": "^1.0",
+            "illuminate/contracts": "5.1.* || 5.2.* || 5.3.*",
+            "illuminate/support": "5.1.* || 5.2.* || 5.3.*",
+            "php": "^5.5.9 || ^7.0"
+        },
+        "require-dev": {
+            "graham-campbell/testbench": "^3.1",
+            "mockery/mockery": "^0.9.4",
+            "phpunit/phpunit": "^4.8 || ^5.0"
+        },
+        "time": "2016-05-05 11:03:48",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.3-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Vinkla\\Hashids\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Vincent Klaiber",
+                "email": "hello@vinkla.com"
+            }
+        ],
+        "description": "A Hashids bridge for Laravel",
+        "keywords": [
+            "bitly",
+            "decrypt",
+            "encrypt",
+            "hash",
+            "hashid",
+            "hashids",
+            "ids",
+            "laravel",
+            "obfuscate",
+            "youtube"
+        ]
+    },
+    {
+        "name": "zzantares/proxmoxve",
+        "version": "v3.0.0",
+        "version_normalized": "3.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ZzAntares/ProxmoxVE.git",
+            "reference": "ead031673b65b425e0adb137d5f6774e5cdf6f6c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://packagist.phpcomposer.com/files/ZzAntares/ProxmoxVE/ead031673b65b425e0adb137d5f6774e5cdf6f6c.zip",
+            "reference": "ead031673b65b425e0adb137d5f6774e5cdf6f6c",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/guzzle": "~4.0",
+            "lib-curl": "*",
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.1",
+            "squizlabs/php_codesniffer": "1.*"
+        },
+        "time": "2014-08-11 01:58:38",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "ProxmoxVE\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "César Muñoz",
+                "email": "zzantares@gmail.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "A simple PHP 5.4+ Proxmox API client.",
+        "homepage": "https://github.com/ZzAntares/ProxmoxVE",
+        "keywords": [
+            "KVM",
+            "OpenVZ",
+            "Proxmox",
+            "Virtualization",
+            "api"
         ]
     }
 ]
