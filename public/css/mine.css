@@ -33,3 +33,73 @@
     cursor: inherit;
     display: block;
 }
+
+.info_delete {
+    margin-top: -10%;
+    margin-right: 1%;
+}
+
+.info {
+    margin: 5%;
+}
+
+.new_info {
+    margin: 5%;
+    background: #ffffff;
+    width: 198px;
+    height: 168px;
+}
+
+.cover_small {
+    width: 160px;
+    height: 120px;
+    margin-bottom: 1%;
+
+}
+.info-photo{
+    height: 300px;
+    overflow: scroll;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 7px;
+    border-color: #c5c5c5;
+    margin: 0 2% 2% 2%;
+}
+.mailbox-attachment-icon.has-img > img {
+    width: 100%;
+    height: 167px;
+}
+.list-unstyled, .chart-legend, .contacts-list, .users-list, .mailbox-attachments {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    float: none;
+}
+
+.mailbox-attachments li {
+    float: left;
+    width: 344px;
+    height: 311px;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+    margin-right: -18px;
+}
+
+.new_baike {
+    margin: 5%;
+    background: #ffffff;
+    width: 198px;
+    height: 168px;
+}
+* {
+    box-sizing: border-box;
+}
+
+.mailbox-attachment-info {
+    padding: 10px;
+    background: #f4f4f4;
+}
+.mailbox-attachment-icon, .mailbox-attachment-info, .mailbox-attachment-size {
+    display: block;
+    margin: 2% 2% 0% 0%;
+}

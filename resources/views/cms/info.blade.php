@@ -5,18 +5,81 @@
     <article id="main">
         <section class="wrapper style5">
             <div class="inner">
+                <div class="row">
+                    <div id="searchPart">
+                        <div class="input-group" style="width: 30%;margin-left: 3%">
+                            <input type="text" id="info_search" class="form-control" placeholder="搜索" onkeypress="getInfo(this.value);"/>
+                            <span class="input-group-btn">
+                              <button onclick="get_Info()" style="height: 39px;" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
 
-                <h3>Lorem ipsum dolor</h3>
-                <p>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur nisi, id malesuada justo. Maecenas sagittis felis ac sagittis semper. Curabitur purus leo, tempus sed finibus eget, fringilla quis risus. Maecenas et lorem quis sem varius sagittis et a est. Maecenas iaculis iaculis sem. Donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce ut aliquet justo. Donec id neque ipsum. Integer eget ultricies odio. Nam vel ex a orci fringilla tincidunt. Aliquam eleifend ligula non velit accumsan cursus. Etiam ut gravida sapien.</p>
+                        <div class="row">
+                            <ul class="mailbox-attachments clearfix">
+                                <li class="new_info">
+                                    <div class="mailbox-attachment-info" style="height: 166px">
+                                        <a href="{{ url('information/create') }}" class="btn btn-app new">
+                                            <i class="fa fa-plus add"></i>
+                                        </a>
+                                    </div>
+                                    <h4> 新建图文</h4>
+                                </li>
+                                @for ($i=0; $i< (count($info['data'])); $i++)
+                                    <li class="info">
+                                        <span class="mailbox-attachment-icon has-img">
+                                            <img class="img-responsive" src="{{ $info['data'][$i]['cover_img_url'] }}" onerror="this.onerror=null;this.src='{{ '/images/default.png' }}'" />
+                                        </span>
+                                        <div class="mailbox-attachment-info">
+                                            <a href="" class="mailbox-attachment-name">
+                                                <div style="width: 300px;height: 20px; overflow: hidden;" ><h4>{{ $info['data'][$i]['title'] }}</h4></div>
+                                            </a>
+                                            <span class="mailbox-attachment-size">
+                                                    <p style="margin: 0">{{ $info['data'][$i]['updated_at']}}</p>
+                                            </span>
+                                            <a href="{{ url('info/editone/'.$info['data'][$i]['id']) }}"  id="edit" class="button icon fa-pencil-square-o"></a>
+                                            <a id="id" onclick="getId({{ $info['data'][$i]['id'] }} )"  data-toggle="modal" data-target="#myModal" class="button icon fa-trash-o" >
+                                            </a>
+                                        </div>
+                                    </li>
+                                @endfor
 
-                <p>Vestibulum ultrices risus velit, sit amet blandit massa auctor sit amet. Sed eu lectus sem. Phasellus in odio at ipsum porttitor mollis id vel diam. Praesent sit amet posuere risus, eu faucibus lectus. Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta quam. Proin nec dui cursus, posuere dui eget interdum. Fusce lectus magna, sagittis at facilisis vitae, pellentesque at etiam. Quisque posuere leo quis sem commodo, vel scelerisque nisi scelerisque. Suspendisse id quam vel tortor tincidunt suscipit. Nullam auctor orci eu dolor consectetur, interdum ullamcorper ante tincidunt. Mauris felis nec felis elementum varius.</p>
+                            </ul>
+                        </div>
 
-                <hr>
+                        <!--分页标签-->
 
-                <h4>Feugiat aliquam</h4>
-                <p>Nam sapien ante, varius in pulvinar vitae, rhoncus id massa. Donec varius ex in mauris ornare, eget euismod urna egestas. Etiam lacinia tempor ipsum, sodales porttitor justo. Aliquam dolor quam, semper in tortor eu, volutpat efficitur quam. Fusce nec fermentum nisl. Aenean erat diam, tempus aliquet erat.</p>
-
-                <p>Etiam iaculis nulla ipsum, et pharetra libero rhoncus ut. Phasellus rutrum cursus velit, eget condimentum nunc blandit vel. In at pulvinar lectus. Morbi diam ante, vulputate et imperdiet eget, fermentum non dolor. Ut eleifend sagittis tincidunt. Sed viverra commodo mi, ac rhoncus justo. Duis neque ligula, elementum ut enim vel, posuere finibus justo. Vivamus facilisis maximus nibh quis pulvinar. Quisque hendrerit in ipsum id tellus facilisis fermentum. Proin mauris dui, at vestibulum sit amet, auctor bibendum neque.</p>
+                        <div class="footer page">
+                            <ul class="pagination pagination-lg no-margin ">
+                                <li id="pre"><a href="javascript:void(0)" onclick="getPreviousPage('/info/show?page=')">&laquo;</a></li>
+                                <li id="next"><a href="javascript:void(0)" onclick="getNextPage('/info/show?page=')">&raquo;</a></li>
+                                <input type="hidden" id="last" value="{{ $info['last_page'] }}">
+                                <input type="hidden" id="current" value="{{ $info['current_page'] }}">
+                            </ul>
+                            <div class="page_num">{{ $info['current_page'] }}/{{ $info['last_page'] }}</div>
+                        </div>
+                        <!--模态对话框-->
+                        <!-- Button trigger modal
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                    aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">图文管理</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        您确定要删除这条图文吗？
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">取 消</button>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="infoDelete()" >确 定</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </section>

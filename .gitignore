@@ -8,3 +8,5 @@
 *.docx
 
 /storage
+
+public/upload

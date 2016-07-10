@@ -21,7 +21,15 @@ class InformationController extends Controller
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "请先登录"]);
         }elseif($user->role == 110){
-            return view("cms.info");
+            $info_output = Infomation::orderBy('updated_at', 'desc')->select('id', 'title','cover_img_url', 'updated_at')->paginate(11);
+            $info_output = $info_output->toArray();
+            $info_data['current_page'] = $info_output['current_page'];
+            $info_data['last_page'] = $info_output['last_page'];
+            for( $info_int=0; $info_int<count($info_output['data']); $info_int++){
+                $info_output['data'][$info_int]['cover_img_url'] = Config::get("cuc.www_host") . $info_output['data'][$info_int]['cover_img_url'];
+            }
+            $info_data['data'] =  $info_output['data'];
+            return view("cms.info")->with('info',$info_output);
         }else {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "禁止越权使用"]);
@@ -72,23 +80,27 @@ class InformationController extends Controller
                     // 根据文件类型“猜测”文件名后缀，$img_ext为img等
                     $mime_type = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $input_img);
                     $img_ext =  $mime_type;
+                    $img_ext = Config::get("cuc.mime2ext." . $mime_type);
+                    Log::debug("saveType:" .  $img_ext);
 
                     if (empty($img_ext)) {
                         abort(422); // TODO 返回错误信息提示页面
                     }else{
 
                         $uri_prefix_img = "information/" . Hashids::connection("information")->encode($usid);  //获得唯一图文封面的文件地址
-                        $saveToDir_img = storage_path('upload/img/' . $uri_prefix_img);   //获得完整的路径
-                        Log::debug("saveToDir:" . $saveToDir_img);
+                        $saveToDir_img = public_path('upload/img/' . $uri_prefix_img);   //获得完整的路径
                         if (!is_dir($saveToDir_img)) {
                             mkdir($saveToDir_img, 0755, true);
                         }
                         $img_hashid = Hashids::connection("main")->encode(preg_replace('/\./', '', microtime(true)));   //利用时间戳获得文件名
                         Log::debug("$img_hashid");
-                        $img_file_name = $img_hashid . "." . $img_ext;    //联合文件名和后缀
-                        $uploaded_img->move($saveToDir_img, $img_file_name);   //保存文件
+                        $img_file_name = $img_hashid . '.' . $img_ext;    //联合文件名和后缀
 
-                        $vObject->cover_img_url = $uri_prefix_img . DIRECTORY_SEPARATOR . $img_file_name;
+                        $uploaded_img->move($saveToDir_img, $img_file_name);   //保存文件
+                        Log::debug("saveToDir:" .  $uploaded_img);
+
+                        $vObject->cover_img_url =  '/upload/img/' . $uri_prefix_img . DIRECTORY_SEPARATOR . $img_file_name;
+                        Log::debug("cover_img_url:" .  $vObject->cover_img_url);
 
                     }
 
@@ -115,7 +127,7 @@ class InformationController extends Controller
                 return Redirect::to('information/show');
 
             } else {
-                return Redirect::to("information/show")->withErrors(["create.failed" => "数据验证不通过"]);
+                return Redirect::to("information/create")->withErrors(["create.failed" => "数据验证不通过"]);
 
             }
         }else {

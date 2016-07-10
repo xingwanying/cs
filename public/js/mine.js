@@ -1,3 +1,43 @@
+$(document).ready(function () {
+    //bootstrap WYSIHTML5 - text editor
+    $(".textarea").wysihtml5(
+        {
+            "toolbar": {
+                "html": true,
+                "image": true,
+                "fa": true
+            }
+
+        });
+    //图片预览
+    $("#fileUpload").on('change', function () {
+
+
+        if (typeof (FileReader) != "undefined") {
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var img = e.target.result;
+                $("#main header").css("background-image","url(" +img +")") ;
+            };
+
+            reader.readAsDataURL($(this)[0].files[0]);
+        } else {
+            alert("你的浏览器不支持FileReader接口。无法看到图片预览");
+        }
+    });
+    $("[name='title']").blur(function(){
+        $("#infoTitle").text($("[name='title']").val());
+    });
+});
+
+
+var Id; //获取模态框当前对应删除元素的id
+function getId(id) {
+    // alert(id);
+    Id = id;
+}
+
 function getToken() {
     var email =  $("#email").val();
     $.ajax({
@@ -16,38 +56,88 @@ function getToken() {
 
 
 }
-$(document).ready(function () {
-    //bootstrap WYSIHTML5 - text editor
-    $(".textarea").wysihtml5(
-        {
-        "toolbar": {
-            "html": true,
-            "image": true,
-            "fa": true
+
+function getInfo(key) {
+    if (event.keyCode == 13) {
+        $.ajax({
+
+            method: "GET",
+            url: "/infomation/search/" + key,
+            success: function (data) {
+                console.log("success!:" + data);
+                $("#searchPart").html(data);
+            },
+            error: function (err) {
+                console.info(err);
+            }
+
+        })
+
+    }
+}
+function get_Info() {
+    var key = $("#InfoSearch").val();
+    $.ajax({
+
+        method: "GET",
+        url: "/infomation/search/" + key,
+        success: function (data) {
+            $("#searchPart").html(data);
+        },
+        error: function (err) {
+            console.info(err);
+        }
+
+    })
+}
+var last = $("#last").val();
+var current = $("#current").val();
+//分页
+function getNextPage(url) {
+    if (current === last) {
+        $("#next").addClass("disabled");
+    } else {
+        current++;
+        console.log("当前页数：" + current);
+        window.location.replace(url + current);
+    }
+
+
+}
+function getPreviousPage(url) {
+    if (current == 1) {
+        $("#pre").addClass("disabled");
+    } else {
+        current--;
+        console.log("当前页数：" + current);
+        window.location.replace(url + current);
+
+    }
+
+}
+
+function infoDelete() {
+    $.ajax({
+        method: "POST",
+        url:  "/infomation/delete/" + Id,
+        data: {
+            id: Id
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function () {
+
+           // window.location.replace(mooe + "/course/showcourse");
+
+        },
+        error: function (err) {
+            console.info(err);
         }
 
     });
-    //图片预览
-    $("#fileUpload").on('change', function () {
 
 
-        if (typeof (FileReader) != "undefined") {
-
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                var img = e.target.result;
-               $("#main header").css("background-image","url(" +img +")") ;
-            };
-
-            reader.readAsDataURL($(this)[0].files[0]);
-        } else {
-            alert("你的浏览器不支持FileReader接口。无法看到图片预览");
-        }
-    });
-    $("[name='title']").blur(function(){
-        $("#infoTitle").text($("[name='title']").val());
-    });
-});
-
+}
 
 
