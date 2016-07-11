@@ -17,12 +17,12 @@
                         <div class="row">
                             <ul class="mailbox-attachments clearfix">
                                 <li class="new_info">
-                                    <div class="mailbox-attachment-info" style="height: 166px">
+                                    <div class="mailbox-attachment-info" >
                                         <a href="{{ url('information/create') }}" class="btn btn-app new">
                                             <i class="fa fa-plus add"></i>
                                         </a>
                                     </div>
-                                    <h4> 新建图文</h4>
+                                    <h2 style="margin: 15% 10% 5% 35%;"> 新建图文</h2>
                                 </li>
                                 @for ($i=0; $i< (count($info['data'])); $i++)
                                     <li class="info">
@@ -36,8 +36,8 @@
                                             <span class="mailbox-attachment-size">
                                                     <p style="margin: 0">{{ $info['data'][$i]['updated_at']}}</p>
                                             </span>
-                                            <a href="{{ url('info/editone/'.$info['data'][$i]['id']) }}"  id="edit" class="button icon fa-pencil-square-o"></a>
-                                            <a id="id" onclick="getId({{ $info['data'][$i]['id'] }} )"  data-toggle="modal" data-target="#myModal" class="button icon fa-trash-o" >
+                                            <a  href="{{ url('information/edit/'.$info['data'][$i]['id']) }}"  id="edit" class="button icon fa-pencil-square-o" style="width: 49%"></a>
+                                            <a id="id" onclick="getId({{ $info['data'][$i]['id'] }} )"  data-toggle="modal" style="width: 49%"  data-target="#myModal" class="button icon fa-trash-o" >
                                             </a>
                                         </div>
                                     </li>
@@ -50,8 +50,8 @@
 
                         <div class="footer page">
                             <ul class="pagination pagination-lg no-margin ">
-                                <li id="pre"><a href="javascript:void(0)" onclick="getPreviousPage('/info/show?page=')">&laquo;</a></li>
-                                <li id="next"><a href="javascript:void(0)" onclick="getNextPage('/info/show?page=')">&raquo;</a></li>
+                                <li id="pre"><a href="javascript:void(0)" onclick="getPreviousPage('/information/show?page=')">&laquo;</a></li>
+                                <li id="next"><a href="javascript:void(0)" onclick="getNextPage('/information/show?page=')">&raquo;</a></li>
                                 <input type="hidden" id="last" value="{{ $info['last_page'] }}">
                                 <input type="hidden" id="current" value="{{ $info['current_page'] }}">
                             </ul>

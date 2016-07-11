@@ -67,8 +67,16 @@
 }
 .mailbox-attachment-icon.has-img > img {
     width: 100%;
-    height: 167px;
+    height: 200px;
 }
+.btn.btn-app.new {
+    width: 100%;
+    height: 180px;
+    padding-top: 22%;
+    font-size: 2em;
+
+}
+
 .list-unstyled, .chart-legend, .contacts-list, .users-list, .mailbox-attachments {
     list-style: none;
     margin: 0;
@@ -79,7 +87,7 @@
 .mailbox-attachments li {
     float: left;
     width: 344px;
-    height: 311px;
+    height: 344px;
     border: 1px solid #eee;
     margin-bottom: 10px;
     margin-right: -18px;

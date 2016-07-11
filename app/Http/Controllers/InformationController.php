@@ -79,7 +79,6 @@ class InformationController extends Controller
                     // TODO 检查相同图片（hash值相同）是否重复上传
                     // 根据文件类型“猜测”文件名后缀，$img_ext为img等
                     $mime_type = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $input_img);
-                    $img_ext =  $mime_type;
                     $img_ext = Config::get("cuc.mime2ext." . $mime_type);
                     Log::debug("saveType:" .  $img_ext);
 
@@ -106,8 +105,8 @@ class InformationController extends Controller
 
                 }
 
-                $uri_prefix_h5 = "/information/" . Hashids::connection("information")->encode($usid);  //获得唯一百科的文件地址
-                $saveToDir_h5 = storage_path('upload/h5' . $uri_prefix_h5);//获得完整的路径
+                $uri_prefix_h5 =  Hashids::connection("information")->encode($usid);  //获得唯一百科的文件地址
+                $saveToDir_h5 = public_path('upload/h5/' . $uri_prefix_h5);//获得完整的路径
                 Log::debug("saveToDir:" . $saveToDir_h5);
                 if (!is_dir($saveToDir_h5)) {
                     mkdir($saveToDir_h5, 0755, true);
@@ -116,10 +115,10 @@ class InformationController extends Controller
                 Log::debug("$h5_hashid");
                 $h5_file_name = $h5_hashid . "." . "html";  //联合文件名和后缀
                 touch($saveToDir_h5 . "/" . $h5_file_name);   //创建文件
-                $content = "<meta charset='utf-8'><meta name='viewport' content='initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width'>" . $content;//拼接html的head
+//                $content = "<meta charset='utf-8'><meta name='viewport' content='initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width'>" . $content;//拼接html的head
                 file_put_contents($saveToDir_h5 . "/" . $h5_file_name, $content);   //将html文件的内容保存到对应文件中
 
-                $vObject->html_url = $uri_prefix_h5 . DIRECTORY_SEPARATOR . $h5_file_name;
+                $vObject -> html_url = 'upload/h5/' .  $uri_prefix_h5 . DIRECTORY_SEPARATOR . $h5_file_name;
                 $vObject -> title = $title;
                 $vObject -> uid = $usid;
                 $vObject -> type = $type;
@@ -130,6 +129,54 @@ class InformationController extends Controller
                 return Redirect::to("information/create")->withErrors(["create.failed" => "数据验证不通过"]);
 
             }
+        }else {
+            return Redirect::to("/auth/login")
+                ->withErrors(["login.failed" => "禁止越权使用"]);
+        }
+    }
+
+    public function getEdit($id){
+        $user = Auth::user();
+        if (empty($user)){
+            return Redirect::to("/auth/login")
+                ->withErrors(["login.failed" => "请先登录"]);
+        }elseif($user->role == 110){
+            $info_output = Infomation::find($id);
+            $info_output['cover_img_url'] =  Config::get("cuc.www_host") . $info_output['cover_img_url'];
+            if($info_output){
+                $info_output['html_url'] =  public_path( $info_output['html_url']);
+                if (file_exists($info_output['html_url'])) {
+                    $info_output['html_url'] = file_get_contents($info_output['html_url']);
+                } else {
+                    $info_output['html_url'] = null;
+                }
+                return view("cms.editInfo")->with('info',$info_output);
+            }else{
+                return Redirect::to("/information/show")
+                    ->withErrors(["exit.failed" => "图文不存在"]);
+            }
+
+        }else {
+            return Redirect::to("/auth/login")
+                ->withErrors(["login.failed" => "禁止越权使用"]);
+        }
+
+    }
+    public function postEdit($id,Request $request){
+        $user = Auth::user();
+        if (empty($user)){
+            return Redirect::to("/auth/login")
+                ->withErrors(["login.failed" => "请先登录"]);
+        }elseif($user->role == 110){
+            $info_output = Infomation::orderBy('updated_at', 'desc')->select('id', 'title','cover_img_url', 'updated_at')->paginate(11);
+            $info_output = $info_output->toArray();
+            $info_data['current_page'] = $info_output['current_page'];
+            $info_data['last_page'] = $info_output['last_page'];
+            for( $info_int=0; $info_int<count($info_output['data']); $info_int++){
+                $info_output['data'][$info_int]['cover_img_url'] = Config::get("cuc.www_host") . $info_output['data'][$info_int]['cover_img_url'];
+            }
+            $info_data['data'] =  $info_output['data'];
+            return view("cms.info")->with('info',$info_output);
         }else {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "禁止越权使用"]);
