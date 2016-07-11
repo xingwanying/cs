@@ -119,17 +119,16 @@ function getPreviousPage(url) {
 function infoDelete() {
     $.ajax({
         method: "POST",
-        url:  "/infomation/delete/" + Id,
+        url:  "/information/delete/" + Id,
         data: {
             id: Id
         },
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        success: function () {
-
-           // window.location.replace(mooe + "/course/showcourse");
-
+        success: function (data) {
+            console.log(data);
+            $('#refreshPart').html(data);
         },
         error: function (err) {
             console.info(err);

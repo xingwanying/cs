@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
-
 <html lang="zh-cn">
 <head>
     <title>cuc13计科</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/css/main.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/css/mine.css') }}" rel="stylesheet" type="text/css" />
@@ -13,6 +14,8 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('/css/bootstrap3-wysihtml5.css') }}">
 </head>
+
+<body class="landing">
 @if (count($errors) > 0)
     <div class="alert alert-danger" style="margin-bottom: 0px;color:rgb(169, 68, 66) !important;background-color: rgb(235, 204, 209) !important;border-color: rgba(215, 57, 37, 0);">
         <strong>天啦噜！</strong> 出错了囧：<br><br>
@@ -24,12 +27,10 @@
     </div>
 @endif
 @if (session('status'))
-    <div class="alert alert-success" style="margin-bottom: 0px;">
+    <div class="alert alert-success" style="margin-bottom: 0px;margin-top: 4%">
         {{ session('status') }}
     </div>
-@endif
-<body class="landing">
-
+    @endif
 <!-- Page Wrapper -->
 <div id="page-wrapper">
 

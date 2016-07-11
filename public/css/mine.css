@@ -86,7 +86,7 @@
 
 .mailbox-attachments li {
     float: left;
-    width: 344px;
+    width: 326px;
     height: 344px;
     border: 1px solid #eee;
     margin-bottom: 10px;
@@ -110,4 +110,15 @@
 .mailbox-attachment-icon, .mailbox-attachment-info, .mailbox-attachment-size {
     display: block;
     margin: 2% 2% 0% 0%;
+}
+
+div.alert{
+    margin: 3% 0% 0% 0%;
+}
+
+.page_num{
+    padding-left: 5%;
+}
+.footer.page{
+    padding-left: 44%;
 }

@@ -123,7 +123,7 @@ class InformationController extends Controller
                 $vObject -> uid = $usid;
                 $vObject -> type = $type;
                 $vObject->save();
-                return Redirect::to('information/show');
+                return Redirect::to('information/show') -> with('status', '恭喜小主保存成功!');
 
             } else {
                 return Redirect::to("information/create")->withErrors(["create.failed" => "数据验证不通过"]);
@@ -142,8 +142,8 @@ class InformationController extends Controller
                 ->withErrors(["login.failed" => "请先登录"]);
         }elseif($user->role == 110){
             $info_output = information::find($id);
-            $info_output['cover_img_url'] =  Config::get("cuc.www_host") . '/' . $info_output['cover_img_url'];
             if($info_output){
+                 $info_output['cover_img_url'] =  Config::get("cuc.www_host") . '/' . $info_output['cover_img_url'];
                 $info_output['html_url'] =  public_path( $info_output['html_url']);
                 if (file_exists($info_output['html_url'])) {
                     $info_output['html_url'] = file_get_contents($info_output['html_url']);
@@ -243,7 +243,7 @@ class InformationController extends Controller
                     if(file_exists($old_img)){
                         unlink($old_img);
                     }
-                    return Redirect::to("information/show")->withStatus("修改成功");
+                    return Redirect::to("information/show") -> with('status', '恭喜小主修改成功!');
 
                 }else{
                 return Redirect::to("information/show")
@@ -259,6 +259,30 @@ class InformationController extends Controller
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "禁止越权使用"]);
         }
+    }
+
+    public function postDelete($id){
+        $user = Auth::user();
+        if (empty($user)){
+            return Redirect::to("/auth/login")
+                ->withErrors(["login.failed" => "请先登录"]);
+        }elseif($user->role == 110){
+            $vObject = Information::find($id);
+            $vObject->delete();
+            $info_output = information::orderBy('updated_at', 'desc')->select('id', 'title','cover_img_url', 'updated_at')->paginate(11);
+            $info_output = $info_output->toArray();
+            $info_data['current_page'] = $info_output['current_page'];
+            $info_data['last_page'] = $info_output['last_page'];
+            for( $info_int=0; $info_int<count($info_output['data']); $info_int++){
+                $info_output['data'][$info_int]['cover_img_url'] = Config::get("cuc.www_host") . '/' . $info_output['data'][$info_int]['cover_img_url'];
+            }
+            $info_data['data'] =  $info_output['data'];
+            return view("cms.deleteInfo")->with('info',$info_output);
+        }else {
+            return Redirect::to("/auth/login")
+                ->withErrors(["login.failed" => "禁止越权使用"]);
+        }
+
     }
 
 }

@@ -5076,7 +5076,6 @@ a.list-group-item-danger.active:focus {
 }
 button.close {
   -webkit-appearance: none;
-  padding: 0;
   cursor: pointer;
   background: transparent;
   border: 0;
@@ -5117,6 +5116,7 @@ button.close {
   margin: 10px;
 }
 .modal-content {
+  margin-top: 30%;
   position: relative;
   background-color: #fff;
   background-clip: padding-box;
@@ -5159,12 +5159,13 @@ button.close {
 .modal-body {
   position: relative;
   padding: 20px;
+  background-color: rgb(235, 170, 175);
 }
 .modal-footer {
-  padding: 19px 20px 20px;
-  margin-top: 15px;
+  padding: 0px 20px 20px;
+  /*margin-top: 15px;*/
   text-align: right;
-  border-top: 1px solid #e5e5e5;
+  background-color: rgb(235, 170, 175) ;
 }
 .modal-footer .btn + .btn {
   margin-bottom: 0;

@@ -16,18 +16,18 @@
                         <div class="form-group">
                             <div class="btn btn-default btn-file">
                                 <i class="fa fa-paperclip"></i>上传封面图片
-                                <input name="photo" required id="fileUpload" type="file"/>
+                                <input name="photo"  id="fileUpload" type="file"/>
                             </div>
                             <p class="help-block">最大不超过1MB</p>
                         </div>
 
                         <div class="row uniform">
                             <div class="6u 12u$(xsmall)">
-                                <input required type="text" name="title"  value="{{ $info['title'] }}" placeholder="文章标题">
+                                <input  type="text" name="title"  value="{{ $info['title'] }}" placeholder="文章标题">
                             </div>
                             <div class="6u$ 12u$">
                                 <div class="select-wrapper">
-                                    <select required name="type" id="demo-category">
+                                    <select name="type" id="demo-category">
                                         <option>- 选择图文类型 -</option>
                                         <option  <?php if($info['type']=="0") echo "selected"; ?> value="0">作品</option>
                                         <option  <?php if($info['type']=="1") echo "selected"; ?> value="1">公告</option>
