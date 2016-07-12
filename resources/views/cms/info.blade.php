@@ -8,7 +8,7 @@
                 <div class="row">
                     <div id="searchPart">
                         <div class="input-group" style="width: 30%;margin-left: 3%">
-                            <input type="text" id="info_search" class="form-control" placeholder="搜索" onkeypress="getInfo(this.value);"/>
+                            <input type="text" id="infoSearch" class="form-control" placeholder="搜索" onkeypress="getInfo(this.value);"/>
                             <span class="input-group-btn">
                               <button onclick="get_Info()" style="height: 39px;" class="btn btn-default"><i class="fa fa-search"></i></button>
                             </span>
@@ -53,7 +53,7 @@
                                     <input type="hidden" id="last" value="{{ $info['last_page'] }}">
                                     <input type="hidden" id="current" value="{{ $info['current_page'] }}">
                                 </ul>
-                                <div class="page_num">{{ $info['current_page'] }}/{{ $info['last_page'] }}</div>
+                                <div class="page_num">{{ $info['current_page'] }}/{{ $info['last_page']}}</div>
                             </div>
                         </div>
 

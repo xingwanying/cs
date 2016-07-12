@@ -285,6 +285,34 @@ class InformationController extends Controller
 
     }
 
+    public function getSearch($search)
+    {
+        $user = Auth::user();
+        if (empty($user)) {
+            return Redirect::to("/auth/login")
+                ->withErrors(["login.failed" => "请先登录"]);
+        } elseif($user->role == 110) {
+            $info_output = Information::where('title', 'like', '%' . $search . '%')->select('id', 'title','cover_img_url', 'updated_at')->paginate(11);
+            $info_output = $info_output->toArray();
+            $info_data['current_page'] = $info_output['current_page'];
+            $info_data['last_page'] = $info_output['last_page'];
+            for( $info_int=0; $info_int<count($info_output['data']); $info_int++) {
+                $info_output['data'][$info_int]['cover_img_url'] =  Config::get("cuc.www_host") . '/' . $info_output['data'][$info_int]['cover_img_url'];
+            }
+
+            $info_data['data'] =  $info_output['data'];
+
+            $info_data['key'] = $search;
+
+            return view("cms.searchInfo")->with('info',$info_data);
+
+        }else {
+            return Redirect::to("/auth/login")
+                ->withErrors(["login.failed" => "禁止越权使用"]);
+        }
+
+    }
+
 }
 
 

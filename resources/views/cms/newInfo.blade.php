@@ -43,7 +43,7 @@
                             <div class="12u$">
                                 <ul class="actions">
                                     <li><input type="submit" value="保存"></li>
-                                    <li><input  type="reset" value="取消" class="special"></li>
+                                    <li><input onclick="cancel()" type="reset" value="取消" class="special"></li>
                                 </ul>
                             </div>
                         </div>

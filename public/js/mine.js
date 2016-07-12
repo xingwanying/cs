@@ -57,12 +57,13 @@ function getToken() {
 
 }
 
+//搜索
 function getInfo(key) {
     if (event.keyCode == 13) {
         $.ajax({
 
             method: "GET",
-            url: "/infomation/search/" + key,
+            url: "/information/search/" + key,
             success: function (data) {
                 console.log("success!:" + data);
                 $("#searchPart").html(data);
@@ -76,11 +77,11 @@ function getInfo(key) {
     }
 }
 function get_Info() {
-    var key = $("#InfoSearch").val();
+    var key = $("#infoSearch").val();
     $.ajax({
 
         method: "GET",
-        url: "/infomation/search/" + key,
+        url: "/information/search/" + key,
         success: function (data) {
             $("#searchPart").html(data);
         },
@@ -137,6 +138,11 @@ function infoDelete() {
     });
 
 
+}
+
+
+function cancel(){
+    window.location.replace('/information/show');
 }
 
 
