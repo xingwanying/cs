@@ -1,4 +1,9 @@
-
+a:hover{
+    color: #ffffff;
+}
+a{
+    text-decoration: none;
+}
 
 .title {
     margin: 16% 0 0 35%;
