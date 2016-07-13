@@ -145,4 +145,22 @@ function cancel(){
     window.location.replace('/information/show');
 }
 
+$(document).ready(function() {
+    //点赞
+    $("#like").click(function () {
+        $("#heart-o").toggle();
+        $("#heart").toggle();
+    });
+    //评论
+    $("#commemt").click(function () {
+        $("#commentinput").slideToggle("3000");
+    });
+    //发送评论
+    $("#sendcom").click(function () {
+        $("#commentinput").slideUp("3000");
+        // $("#commenttext").attr("value","");
+        $("#result").show();
+        $("#commenttext").val("");
+    });
 
+})

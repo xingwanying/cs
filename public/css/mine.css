@@ -127,3 +127,23 @@ div.alert{
 .footer.page{
     padding-left: 44%;
 }
+
+
+/* Box Model */
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+span.img.left > img{
+    width: 185px;
+    height: 106px;
+    border-radius: 10px;
+}
+p{
+    margin: 0;
+    padding: 0;
+}

@@ -15,48 +15,48 @@ use App\Comment;
 
 class InformationController extends Controller
 {
-    public function getShow(){
+    public function getShow()
+    {
         $user = Auth::user();
-        if (empty($user)){
+        if (empty($user)) {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "请先登录"]);
-        }elseif($user->role == 110){
-            $info_output = information::orderBy('updated_at', 'desc')->select('id', 'title','cover_img_url', 'updated_at')->paginate(11);
+        } elseif ($user->role == 110) {
+            $info_output = information::orderBy('updated_at', 'desc')->select('id', 'title', 'cover_img_url', 'updated_at')->paginate(11);
             $info_output = $info_output->toArray();
-            $info_data['current_page'] = $info_output['current_page'];
-            $info_data['last_page'] = $info_output['last_page'];
-            for( $info_int=0; $info_int<count($info_output['data']); $info_int++){
+            for ($info_int = 0; $info_int < count($info_output['data']); $info_int++) {
                 $info_output['data'][$info_int]['cover_img_url'] = Config::get("cuc.www_host") . '/' . $info_output['data'][$info_int]['cover_img_url'];
             }
-            $info_data['data'] =  $info_output['data'];
-            return view("cms.info")->with('info',$info_output);
-        }else {
+            return view("cms.info")->with('info', $info_output);
+        } else {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "禁止越权使用"]);
         }
 
     }
+
     public function getCreate()
     {
         $user = Auth::user();
-        if (empty($user)){
+        if (empty($user)) {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "请先登录"]);
-        }elseif($user->role == 110){
+        } elseif ($user->role == 110) {
             return view("cms.newInfo");
-        }else {
+        } else {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "禁止越权使用"]);
         }
 
     }
+
     public function postCreate(Request $request)
     {
         $user = Auth::user();
-        if (empty($user)){
+        if (empty($user)) {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "请先登录"]);
-        }elseif($user->role == 110){
+        } elseif ($user->role == 110) {
             $rules = [
                 'content' => "required|max:2000",
                 'title' => "required|max:200",
@@ -71,7 +71,7 @@ class InformationController extends Controller
                 $title = $request->get("title");
                 $type = $request->get("type");
                 $content = $request->get("content");        //获取html文件的内容
-                $usid = $user -> id;
+                $usid = $user->id;
 
                 if ($uploaded_img) {
                     $input_img = $uploaded_img->getFileInfo();
@@ -80,11 +80,11 @@ class InformationController extends Controller
                     // 根据文件类型“猜测”文件名后缀，$img_ext为img等
                     $mime_type = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $input_img);
                     $img_ext = Config::get("cuc.mime2ext." . $mime_type);
-                    Log::debug("saveType:" .  $img_ext);
+                    Log::debug("saveType:" . $img_ext);
 
                     if (empty($img_ext)) {
                         return Redirect::to("information/create")->withErrors(["create.failed" => "图片类型错误"]);
-                    }else{
+                    } else {
 
                         $uri_prefix_img = "information/" . Hashids::connection("information")->encode($usid);  //获得唯一图文封面的文件地址
                         $saveToDir_img = public_path('upload/img/' . $uri_prefix_img);   //获得完整的路径
@@ -96,16 +96,16 @@ class InformationController extends Controller
                         $img_file_name = $img_hashid . '.' . $img_ext;    //联合文件名和后缀
 
                         $uploaded_img->move($saveToDir_img, $img_file_name);   //保存文件
-                        Log::debug("saveToDir:" .  $uploaded_img);
+                        Log::debug("saveToDir:" . $uploaded_img);
 
-                        $vObject->cover_img_url =  'upload/img/' . $uri_prefix_img . DIRECTORY_SEPARATOR . $img_file_name;
-                        Log::debug("cover_img_url:" .  $vObject->cover_img_url);
+                        $vObject->cover_img_url = 'upload/img/' . $uri_prefix_img . DIRECTORY_SEPARATOR . $img_file_name;
+                        Log::debug("cover_img_url:" . $vObject->cover_img_url);
 
                     }
 
                 }
 
-                $uri_prefix_h5 =  Hashids::connection("information")->encode($usid);  //获得唯一百科的文件地址
+                $uri_prefix_h5 = Hashids::connection("information")->encode($usid);  //获得唯一百科的文件地址
                 $saveToDir_h5 = public_path('upload/h5/' . $uri_prefix_h5);//获得完整的路径
                 Log::debug("saveToDir:" . $saveToDir_h5);
                 if (!is_dir($saveToDir_h5)) {
@@ -118,56 +118,59 @@ class InformationController extends Controller
 //                $content = "<meta charset='utf-8'><meta name='viewport' content='initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width'>" . $content;//拼接html的head
                 file_put_contents($saveToDir_h5 . "/" . $h5_file_name, $content);   //将html文件的内容保存到对应文件中
 
-                $vObject -> html_url = 'upload/h5/' .  $uri_prefix_h5 . DIRECTORY_SEPARATOR . $h5_file_name;
-                $vObject -> title = $title;
-                $vObject -> uid = $usid;
-                $vObject -> type = $type;
+                $vObject->html_url = 'upload/h5/' . $uri_prefix_h5 . DIRECTORY_SEPARATOR . $h5_file_name;
+                $vObject->title = $title;
+                $vObject->uid = $usid;
+                $vObject->type = $type;
                 $vObject->save();
-                return Redirect::to('information/show') -> with('status', '恭喜小主保存成功!');
+                return Redirect::to('information/show')->with('status', '恭喜小主保存成功!');
 
             } else {
                 return Redirect::to("information/create")->withErrors(["create.failed" => "数据验证不通过"]);
 
             }
-        }else {
+        } else {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "禁止越权使用"]);
         }
     }
 
-    public function getEdit($id){
+    public function getEdit($id)
+    {
         $user = Auth::user();
-        if (empty($user)){
+        if (empty($user)) {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "请先登录"]);
-        }elseif($user->role == 110){
+        } elseif ($user->role == 110) {
             $info_output = information::find($id);
-            if($info_output){
-                 $info_output['cover_img_url'] =  Config::get("cuc.www_host") . '/' . $info_output['cover_img_url'];
-                $info_output['html_url'] =  public_path( $info_output['html_url']);
+            if ($info_output) {
+                $info_output['cover_img_url'] = Config::get("cuc.www_host") . '/' . $info_output['cover_img_url'];
+                $info_output['html_url'] = public_path($info_output['html_url']);
                 if (file_exists($info_output['html_url'])) {
                     $info_output['html_url'] = file_get_contents($info_output['html_url']);
                 } else {
                     $info_output['html_url'] = null;
                 }
-                return view("cms.editInfo")->with('info',$info_output);
-            }else{
+                return view("cms.editInfo")->with('info', $info_output);
+            } else {
                 return Redirect::to("/information/show")
                     ->withErrors(["exit.failed" => "图文不存在"]);
             }
 
-        }else {
+        } else {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "禁止越权使用"]);
         }
 
     }
-    public function postEdit(Request $request,$id){
+
+    public function postEdit(Request $request, $id)
+    {
         $user = Auth::user();
-        if (empty($user)){
+        if (empty($user)) {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "请先登录"]);
-        }elseif($user->role == 110){
+        } elseif ($user->role == 110) {
             $rules = [
                 'content' => "max:2000",
                 'title' => "max:200",
@@ -177,12 +180,12 @@ class InformationController extends Controller
             $validator = Validator::make($request->all(), $rules);   //验证输入信息的合法性
             if ($validator->passes()) {
                 $vObject = Information::find($id);
-                if($vObject){
+                if ($vObject) {
                     $uploaded_img = $request->file('photo');
                     $title = $request->get("title");
                     $type = $request->get("type");
                     $content = $request->get("content");        //获取html文件的内容
-                    $usid = $user -> id;
+                    $usid = $user->id;
                     if ($uploaded_img) {
                         $input_img = $uploaded_img->getFileInfo();
 
@@ -190,12 +193,12 @@ class InformationController extends Controller
                         // 根据文件类型“猜测”文件名后缀，$img_ext为img等
                         $mime_type = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $input_img);
                         $img_ext = Config::get("cuc.mime2ext." . $mime_type);
-                        Log::debug("saveType:" .  $img_ext);
+                        Log::debug("saveType:" . $img_ext);
 
                         if (empty($img_ext)) {
                             return Redirect::to("information/edit/" . $id)->withErrors(["edit.failed" => "图片类型错误"]);
 
-                        }else{
+                        } else {
 
                             $uri_prefix_img = "information/" . Hashids::connection("information")->encode($usid);  //获得唯一图文封面的文件地址
                             $saveToDir_img = public_path('upload/img/' . $uri_prefix_img);   //获得完整的路径
@@ -207,16 +210,16 @@ class InformationController extends Controller
                             $img_file_name = $img_hashid . '.' . $img_ext;    //联合文件名和后缀
 
                             $uploaded_img->move($saveToDir_img, $img_file_name);   //保存文件
-                            Log::debug("saveToDir:" .  $uploaded_img);
+                            Log::debug("saveToDir:" . $uploaded_img);
 
-                            $vObject->cover_img_url =  '/upload/img/' . $uri_prefix_img . DIRECTORY_SEPARATOR . $img_file_name;
-                            Log::debug("cover_img_url:" .  $vObject->cover_img_url);
+                            $vObject->cover_img_url = '/upload/img/' . $uri_prefix_img . DIRECTORY_SEPARATOR . $img_file_name;
+                            Log::debug("cover_img_url:" . $vObject->cover_img_url);
 
                         }
 
                     }
 
-                    $uri_prefix_h5 =  Hashids::connection("information")->encode($usid);  //获得唯一百科的文件地址
+                    $uri_prefix_h5 = Hashids::connection("information")->encode($usid);  //获得唯一百科的文件地址
                     $saveToDir_h5 = public_path('upload/h5/' . $uri_prefix_h5);//获得完整的路径
                     Log::debug("saveToDir:" . $saveToDir_h5);
                     if (!is_dir($saveToDir_h5)) {
@@ -229,56 +232,57 @@ class InformationController extends Controller
 //                $content = "<meta charset='utf-8'><meta name='viewport' content='initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width'>" . $content;//拼接html的head
                     file_put_contents($saveToDir_h5 . "/" . $h5_file_name, $content);   //将html文件的内容保存到对应文件中
 
-                    $vObject -> html_url = 'upload/h5/' .  $uri_prefix_h5 . DIRECTORY_SEPARATOR . $h5_file_name;
-                    $vObject -> title = $title;
-                    $vObject -> op_uid = $usid;
-                    $vObject -> type = $type;
+                    $vObject->html_url = 'upload/h5/' . $uri_prefix_h5 . DIRECTORY_SEPARATOR . $h5_file_name;
+                    $vObject->title = $title;
+                    $vObject->op_uid = $usid;
+                    $vObject->type = $type;
                     $vObject->save();
                     //删除旧的html和img文件
                     $old_html = public_path('upload/h5' . $vObject->html_url);
-                    if(file_exists($old_html)){
+                    if (file_exists($old_html)) {
                         unlink($old_html);
                     }
                     $old_img = public_path('upload/img' . $vObject->cover_img_url);
-                    if(file_exists($old_img)){
+                    if (file_exists($old_img)) {
                         unlink($old_img);
                     }
-                    return Redirect::to("information/show") -> with('status', '恭喜小主修改成功!');
+                    return Redirect::to("information/show")->with('status', '恭喜小主修改成功!');
 
-                }else{
-                return Redirect::to("information/show")
-                    ->withErrors(["exit.failed" => "图文不存在"]);
-            }
+                } else {
+                    return Redirect::to("information/show")
+                        ->withErrors(["exit.failed" => "图文不存在"]);
+                }
 
 
             } else {
                 return Redirect::to("information/edit/" . $id)->withErrors(["edit.failed" => "数据验证不通过"]);
 
             }
-        }else {
+        } else {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "禁止越权使用"]);
         }
     }
 
-    public function postDelete($id){
+    public function postDelete($id)
+    {
         $user = Auth::user();
-        if (empty($user)){
+        if (empty($user)) {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "请先登录"]);
-        }elseif($user->role == 110){
+        } elseif ($user->role == 110) {
             $vObject = Information::find($id);
             $vObject->delete();
-            $info_output = information::orderBy('updated_at', 'desc')->select('id', 'title','cover_img_url', 'updated_at')->paginate(11);
+            $info_output = information::orderBy('updated_at', 'desc')->select('id', 'title', 'cover_img_url', 'updated_at')->paginate(11);
             $info_output = $info_output->toArray();
             $info_data['current_page'] = $info_output['current_page'];
             $info_data['last_page'] = $info_output['last_page'];
-            for( $info_int=0; $info_int<count($info_output['data']); $info_int++){
+            for ($info_int = 0; $info_int < count($info_output['data']); $info_int++) {
                 $info_output['data'][$info_int]['cover_img_url'] = Config::get("cuc.www_host") . '/' . $info_output['data'][$info_int]['cover_img_url'];
             }
-            $info_data['data'] =  $info_output['data'];
-            return view("cms.deleteInfo")->with('info',$info_output);
-        }else {
+            $info_data['data'] = $info_output['data'];
+            return view("cms.deleteInfo")->with('info', $info_output);
+        } else {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "禁止越权使用"]);
         }
@@ -291,28 +295,82 @@ class InformationController extends Controller
         if (empty($user)) {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "请先登录"]);
-        } elseif($user->role == 110) {
-            $info_output = Information::where('title', 'like', '%' . $search . '%')->select('id', 'title','cover_img_url', 'updated_at')->paginate(11);
+        } elseif ($user->role == 110) {
+            $info_output = Information::where('title', 'like', '%' . $search . '%')->select('id', 'title', 'cover_img_url', 'updated_at')->paginate(11);
             $info_output = $info_output->toArray();
             $info_data['current_page'] = $info_output['current_page'];
             $info_data['last_page'] = $info_output['last_page'];
-            for( $info_int=0; $info_int<count($info_output['data']); $info_int++) {
-                $info_output['data'][$info_int]['cover_img_url'] =  Config::get("cuc.www_host") . '/' . $info_output['data'][$info_int]['cover_img_url'];
+            for ($info_int = 0; $info_int < count($info_output['data']); $info_int++) {
+                $info_output['data'][$info_int]['cover_img_url'] = Config::get("cuc.www_host") . '/' . $info_output['data'][$info_int]['cover_img_url'];
             }
 
-            $info_data['data'] =  $info_output['data'];
+            $info_data['data'] = $info_output['data'];
 
             $info_data['key'] = $search;
 
-            return view("cms.searchInfo")->with('info',$info_data);
+            return view("cms.searchInfo")->with('info', $info_data);
 
-        }else {
+        } else {
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "禁止越权使用"]);
         }
 
     }
 
+    public function getInfo($type)
+    {
+        $info_output = information::where('type',$type)->orderBy('updated_at', 'desc')->select('id', 'title', 'cover_img_url', 'updated_at','type','uid','op_uid','comment_count','favorite_count')->paginate(10);
+        $info_output = $info_output->toArray();
+        for( $info_int=0; $info_int<count($info_output['data']); $info_int++){
+            $info_output['data'][$info_int]['cover_img_url'] = Config::get("cuc.www_host") . '/' . $info_output['data'][$info_int]['cover_img_url'];
+            $editor = User::find($info_output['data'][$info_int]['uid']);
+            $info_output['data'][$info_int]['uname'] = $editor->name;
+            $info_output['data'][$info_int]['utype'] = $editor-> role;
+            if(!$editor-> avatar_img_url){
+                $info_output['data'][$info_int]['uavatar'] = null;
+            }else{
+                $info_output['data'][$info_int]['uavatar'] = Config::get("cuc.www_host") . '/' .$editor-> avatar_img_url;
+            }
+        }
+        $info_output['type'] = $type;
+//        switch($type){
+//            case 0:
+//                return view("work")->with('info',$info_output);
+//                break;
+//            case 1:
+//                return $info_output;
+//                return view("inform")->with('info',$info_output);
+//                break;
+//            case 2:
+//            case 3:
+//            case 4:
+//                return view("information")->with('info',$info_output);
+//                break;
+//
+//
+//        }
+        return view("information")->with('info',$info_output);
+
+
+    }
+
+    public function getDetial($id)
+    {
+
+        $info = Information::find($id);
+        $editor = User::find($info['uid']);
+        $info['uname'] = $editor -> name;
+        $info['utype'] = $editor -> role;
+        $info['uavater'] = $editor -> avatar_img_url;
+        if(!$editor-> avatar_img_url){
+            $info_output['uavatar'] = null;
+        }else{
+            $info_output['uavatar'] = Config::get("cuc.www_host") . '/' .$editor-> avatar_img_url;
+        }
+        $info['html_url'] = Config::get("cuc.www_host") . '/' . $info['html_url'];
+        return view("infoDetial")->with('info',$info);
+
+
+    }
+
 }
-
-
