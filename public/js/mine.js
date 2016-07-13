@@ -26,9 +26,45 @@ $(document).ready(function () {
             alert("你的浏览器不支持FileReader接口。无法看到图片预览");
         }
     });
+
+    $("#avatarUpload").on('change', function () {
+
+
+        if (typeof (FileReader) != "undefined") {
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var img = e.target.result;
+                $("#avatar").attr("src",img) ;
+            };
+
+            reader.readAsDataURL($(this)[0].files[0]);
+        } else {
+            alert("你的浏览器不支持FileReader接口。无法看到图片预览");
+        }
+    });
+
     $("[name='title']").blur(function(){
         $("#infoTitle").text($("[name='title']").val());
     });
+
+    //点赞
+    $("#like").click(function () {
+        $("#heart-o").toggle();
+        $("#heart").toggle();
+    });
+    //评论
+    $("#commemt").click(function () {
+        $("#commentinput").slideToggle("3000");
+    });
+    //发送评论
+    $("#sendcom").click(function () {
+        $("#commentinput").slideUp("3000");
+        // $("#commenttext").attr("value","");
+        $("#result").show();
+        $("#commenttext").val("");
+    });
+
 });
 
 
@@ -165,26 +201,12 @@ function goBack(type){
 }
 
 function goBackCMS(){
-    var url = '/information/show'
+    var url = '/information/show';
     window.location.replace(url);
 }
 
-$(document).ready(function() {
-    //点赞
-    $("#like").click(function () {
-        $("#heart-o").toggle();
-        $("#heart").toggle();
-    });
-    //评论
-    $("#commemt").click(function () {
-        $("#commentinput").slideToggle("3000");
-    });
-    //发送评论
-    $("#sendcom").click(function () {
-        $("#commentinput").slideUp("3000");
-        // $("#commenttext").attr("value","");
-        $("#result").show();
-        $("#commenttext").val("");
-    });
+function goUserInfo(){
+    var url = '/user/profile';
+    window.location.replace(url);
+}
 
-});
