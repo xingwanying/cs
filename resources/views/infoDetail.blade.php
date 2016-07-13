@@ -13,8 +13,10 @@
             </h6>
             <h2 >{{ $info['title'] }}</h2>
         </header>
+
         <section class="wrapper style5">
             <div class="inner">
+                <button onclick="goBack({{ $info['type'] }})" type="button">返回</button>
                 <section id="h5">
                     <?php echo $info['html_url']; ?>
                 </section>

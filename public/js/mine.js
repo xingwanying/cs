@@ -146,7 +146,7 @@ function getDetail(id){
         url: "/information/detail/" + id,
         success: function (data) {
             $data = $(data);
-            $('#main').fadeOut().html($data).fadeIn();
+            $('#main').html($data).fadeIn();
         },
         error: function (err) {
             console.info(err);
@@ -157,6 +157,11 @@ function getDetail(id){
 
 function cancel(){
     window.location.replace('/information/show');
+}
+
+function goBack(type){
+    var url = '/information/info/' + type;
+    window.location.replace(url);
 }
 
 $(document).ready(function() {
