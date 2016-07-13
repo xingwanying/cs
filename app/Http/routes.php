@@ -37,4 +37,6 @@ Route::get('default', function () {
 Route::controllers([
     'home' => 'HomeController',
     'information' => 'InformationController',
+    'course' => 'CourseController',
+    'user' => 'UserController',
 ]);
