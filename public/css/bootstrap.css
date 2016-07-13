@@ -5160,13 +5160,13 @@ button.close {
 .modal-body {
   position: relative;
   padding: 20px;
-  background-color: rgb(235, 170, 175);
+  background-color: rgb(255, 255, 255);
 }
 .modal-footer {
   padding: 0px 20px 20px;
   /*margin-top: 15px;*/
   text-align: right;
-  background-color: rgb(235, 170, 175) ;
+  background-color: rgb(255, 255, 255);
 }
 .modal-footer .btn + .btn {
   margin-bottom: 0;

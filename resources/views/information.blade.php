@@ -18,19 +18,18 @@
             <p>CUC13计算机科学与技术</p>
         </header>
         <section class="wrapper style5">
-            <div class="inner">
+            <div class="inner" style="padding: 0% 12% 0% 18%;">
                 <section>
-                    <div class="inner" style="padding: 0% 12% 0% 20%;">
                         @for( $i=0; $i<count($info['data']); $i++)
 
                         <div class="row">
-                            <div class="col-md-3">
+                            <div onclick="getDetial({{ $info['data'][$i]['id']}})"  class="col-md-3">
                                  <span class="img left" >
                                     <img src="{{ $info['data'][$i]['cover_img_url'] }}"/>
                                 </span>
                             </div>
                             <div class="col-md-7">
-                                <a href=" {{ url('information/detial/' . $info['data'][$i]['id']) }}" ><h2 style="margin: 0">{{ $info['data'][$i]['title'] }}</h2></a>
+                                <a onclick="getDetail({{ $info['data'][$i]['id']}})" ><h2 style="margin: 0">{{ $info['data'][$i]['title'] }}</h2></a>
 
                                 <p>{{ $info['data'][$i]['updated_at'] }}</p>
                                 <div class="bs-example">
@@ -60,11 +59,10 @@
                                         {{ $info['data'][$i]['uname'] }}
                                 </h6>
                             </div>
-                            </div>
-
+                        </div>
                         <!--发布评论框-->
                         <div class="commentinput" id="commentinput">
-                            <input type="text" id="commenttext" style="width:84%;display:inline;height: 39px;border-top-width: 0;margin-top: 12px;">
+                            <input type="text" id="commenttext" style="width:83%;display:inline;height: 39px;border-top-width: 0;margin-top: 12px;">
                             <button id="sendcom"><span class="fa fa-reply"></span>发送</button>
                         </div>
                         <!--评论内容-->
@@ -128,10 +126,10 @@
                             </div>
                         </div>
 
-                        <hr style = "width: 100%;margin-top:25px;margin-bottom:25px">
-                        @endfor
+                        <hr style = "width: 100%;margin-top:5%;margin-bottom:5%">
 
-                    </div>
+                    @endfor
+
                 </section>
             </div>
         </section>

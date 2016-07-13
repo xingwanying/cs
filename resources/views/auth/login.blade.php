@@ -22,7 +22,7 @@
         @endif
     <!-- Header -->
     <header id="header">
-        <h1>CUCCS</h1>
+        <a href="{{ url('home') }}"><h1>CUCCS</h1></a>
         <p>关注我们<br />
             微信公众号：13计算机科学与技术</p>
     </header>

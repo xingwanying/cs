@@ -354,21 +354,26 @@ class InformationController extends Controller
 
     }
 
-    public function getDetial($id)
+    public function getDetail($id)
     {
 
-        $info = Information::find($id);
-        $editor = User::find($info['uid']);
-        $info['uname'] = $editor -> name;
-        $info['utype'] = $editor -> role;
-        $info['uavater'] = $editor -> avatar_img_url;
+        $info_output = Information::find($id);
+        $editor = User::find($info_output['uid']);
+        $info_output['uname'] = $editor -> name;
+        $info_output['utype'] = $editor -> role;
+        $info_output['uavater'] = $editor -> avatar_img_url;
+        $info_output['cover_img_url'] = Config::get("cuc.www_host") . '/' . $info_output['cover_img_url'];
         if(!$editor-> avatar_img_url){
             $info_output['uavatar'] = null;
         }else{
             $info_output['uavatar'] = Config::get("cuc.www_host") . '/' .$editor-> avatar_img_url;
         }
-        $info['html_url'] = Config::get("cuc.www_host") . '/' . $info['html_url'];
-        return view("infoDetial")->with('info',$info);
+        if (file_exists($info_output['html_url'])) {
+            $info_output['html_url'] = file_get_contents($info_output['html_url']);
+        } else {
+            $info_output['html_url'] = null;
+        }
+        return view("infoDetail")->with('info',$info_output);
 
 
     }

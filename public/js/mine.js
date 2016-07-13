@@ -139,7 +139,21 @@ function infoDelete() {
 
 
 }
+function getDetail(id){
+    $.ajax({
 
+        method: "GET",
+        url: "/information/detail/" + id,
+        success: function (data) {
+            $data = $(data);
+            $('#main').fadeOut().html($data).fadeIn();
+        },
+        error: function (err) {
+            console.info(err);
+        }
+
+    })
+}
 
 function cancel(){
     window.location.replace('/information/show');
@@ -163,4 +177,4 @@ $(document).ready(function() {
         $("#commenttext").val("");
     });
 
-})
+});

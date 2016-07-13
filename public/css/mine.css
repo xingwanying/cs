@@ -139,11 +139,23 @@ div.alert{
 
 
 span.img.left > img{
-    width: 185px;
+    width: 170px;
     height: 106px;
     border-radius: 10px;
 }
 p{
     margin: 0;
     padding: 0;
+}
+.modal-body > h4 {
+    color: #333;
+}
+
+.modal-body > p {
+    color: #333;
+
+}
+
+#h5{
+    width: 80%;
 }
