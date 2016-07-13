@@ -1,4 +1,8 @@
 
+@extends('layouts.main')
+
+@section('content')
+    <article id="main">
         <header style="background-image: url('{{ $info['cover_img_url']  }}')">
             @if($info['uavatar'] == null)
                 <img src=" {{ asset('images/m21.jpg ')}}" class="img-circle">
@@ -17,9 +21,11 @@
 
         <section class="wrapper style5">
             <div class="inner">
-                <button onclick="goBack({{ $info['type'] }})" type="button">返回</button>
+                <button onclick="goBackCMS()" type="button">返回</button>
                 <section id="h5">
                     <?php echo $info['html_url']; ?>
                 </section>
             </div>
         </section>
+    </article>
+@endsection

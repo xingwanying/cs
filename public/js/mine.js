@@ -164,6 +164,11 @@ function goBack(type){
     window.location.replace(url);
 }
 
+function goBackCMS(){
+    var url = '/information/show'
+    window.location.replace(url);
+}
+
 $(document).ready(function() {
     //点赞
     $("#like").click(function () {

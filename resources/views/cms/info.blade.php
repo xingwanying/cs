@@ -30,7 +30,7 @@
                                             <img class="img-responsive" src="{{ $info['data'][$i]['cover_img_url'] }}" onerror="this.onerror=null;this.src='{{ '/images/default.png' }}'" />
                                         </span>
                                             <div class="mailbox-attachment-info">
-                                                <a href="" class="mailbox-attachment-name">
+                                                <a href="{{ url('information/infodetail/' . $info['data'][$i]['id'])  }}" class="mailbox-attachment-name">
                                                     <div style="width: 300px;height: 20px; overflow: hidden;" ><h4>{{ $info['data'][$i]['title'] }}</h4></div>
                                                 </a>
                                             <span class="mailbox-attachment-size">
