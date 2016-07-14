@@ -12,6 +12,7 @@ use Response,Form;
 use DB, Hashids, Log, Redirect, Input, Config, Hash, Validator, Gate;
 use Auth;
 use App\Comment;
+use App\UserFavorite;
 
 class InformationController extends Controller
 {
@@ -22,7 +23,7 @@ class InformationController extends Controller
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "请先登录"]);
         } elseif ($user->role == 110) {
-            $info_output = information::orderBy('updated_at', 'desc')->select('id', 'title', 'cover_img_url', 'updated_at')->paginate(11);
+            $info_output = information::orderBy('updated_at', 'desc')->select('id', 'title', 'cover_img_url', 'updated_at','type')->paginate(11);
             $info_output = $info_output->toArray();
             for ($info_int = 0; $info_int < count($info_output['data']); $info_int++) {
                 $info_output['data'][$info_int]['cover_img_url'] = Config::get("cuc.www_host") . '/' . $info_output['data'][$info_int]['cover_img_url'];
@@ -105,7 +106,7 @@ class InformationController extends Controller
 
                 }
 
-                $uri_prefix_h5 = Hashids::connection("information")->encode($usid);  //获得唯一百科的文件地址
+                $uri_prefix_h5 = Hashids::connection("information")->encode($usid);
                 $saveToDir_h5 = public_path('upload/h5/' . $uri_prefix_h5);//获得完整的路径
                 Log::debug("saveToDir:" . $saveToDir_h5);
                 if (!is_dir($saveToDir_h5)) {
@@ -133,6 +134,36 @@ class InformationController extends Controller
             return Redirect::to("/auth/login")
                 ->withErrors(["login.failed" => "禁止越权使用"]);
         }
+    }
+
+    public function getInfodetail($id)
+    {
+        $user = Auth::user();
+        if (empty($user)) {
+            return Redirect::to("/auth/login")
+                ->withErrors(["login.failed" => "请先登录"]);
+        } elseif ($user->role == 110) {
+            $info_output = Information::find($id);
+            $editor = User::find($info_output['uid']);
+            $info_output['uname'] = $editor -> name;
+            $info_output['utype'] = $editor -> role;
+            $info_output['uavatar'] = $editor -> avatar_img_url;
+            $info_output['cover_img_url'] = Config::get("cuc.www_host") . '/' . $info_output['cover_img_url'];
+            if(!$editor-> avatar_img_url){
+                $info_output['uavatar'] = null;
+            }else{
+                $info_output['uavatar'] = Config::get("cuc.www_host") . '/' .$editor-> avatar_img_url;
+            }
+            if (file_exists($info_output['html_url'])) {
+                $info_output['html_url'] = file_get_contents($info_output['html_url']);
+            } else {
+                $info_output['html_url'] = null;
+            }
+            return view("cms.detail")->with('info',$info_output);
+
+        }
+
+
     }
 
     public function getEdit($id)
@@ -212,7 +243,7 @@ class InformationController extends Controller
                             $uploaded_img->move($saveToDir_img, $img_file_name);   //保存文件
                             Log::debug("saveToDir:" . $uploaded_img);
 
-                            $vObject->cover_img_url = '/upload/img/' . $uri_prefix_img . DIRECTORY_SEPARATOR . $img_file_name;
+                            $vObject->cover_img_url = 'upload/img/' . $uri_prefix_img . DIRECTORY_SEPARATOR . $img_file_name;
                             Log::debug("cover_img_url:" . $vObject->cover_img_url);
 
                         }
@@ -319,9 +350,18 @@ class InformationController extends Controller
 
     public function getInfo($type)
     {
+        $user = Auth::user();
         $info_output = information::where('type',$type)->orderBy('updated_at', 'desc')->select('id', 'title', 'cover_img_url', 'updated_at','type','uid','op_uid','comment_count','favorite_count')->paginate(10);
         $info_output = $info_output->toArray();
         for( $info_int=0; $info_int<count($info_output['data']); $info_int++){
+            if($user){
+                $ufl = UserFavorite::where('infor_id',$info_output['data'][$info_int]['id'])->where('uid',$user -> id) -> get();
+                $like = count($ufl);
+                $info_output['data'][$info_int]['is_like'] = $like;
+
+            }else{
+                $info_output['data'][$info_int]['is_like'] = 0;
+            }
             $info_output['data'][$info_int]['cover_img_url'] = Config::get("cuc.www_host") . '/' . $info_output['data'][$info_int]['cover_img_url'];
             $editor = User::find($info_output['data'][$info_int]['uid']);
             $info_output['data'][$info_int]['uname'] = $editor->name;
@@ -333,22 +373,8 @@ class InformationController extends Controller
             }
         }
         $info_output['type'] = $type;
-//        switch($type){
-//            case 0:
-//                return view("work")->with('info',$info_output);
-//                break;
-//            case 1:
-//                return $info_output;
-//                return view("inform")->with('info',$info_output);
-//                break;
-//            case 2:
-//            case 3:
-//            case 4:
-//                return view("information")->with('info',$info_output);
-//                break;
-//
-//
-//        }
+
+
         return view("information")->with('info',$info_output);
 
 
@@ -361,7 +387,7 @@ class InformationController extends Controller
         $editor = User::find($info_output['uid']);
         $info_output['uname'] = $editor -> name;
         $info_output['utype'] = $editor -> role;
-        $info_output['uavater'] = $editor -> avatar_img_url;
+        $info_output['uavatar'] = $editor -> avatar_img_url;
         $info_output['cover_img_url'] = Config::get("cuc.www_host") . '/' . $info_output['cover_img_url'];
         if(!$editor-> avatar_img_url){
             $info_output['uavatar'] = null;
@@ -373,9 +399,60 @@ class InformationController extends Controller
         } else {
             $info_output['html_url'] = null;
         }
-        return view("infoDetail")->with('info',$info_output);
+        $comment = Comment::where('infor_id',$id)->get();
+        for($i=0;$i<count($comment);$i++){
+            $user = User::find($comment[$i]->uid);
+            $comment[$i]['uname'] = $user -> name;
+            if(!$user-> avatar_img_url){
+                $comment[$i]['uavatar'] = null;
+            }else{
+                $comment[$i]['uavatar'] = Config::get("cuc.www_host") . '/' .$user-> avatar_img_url;
+            }
+        }
+
+        return view("infoDetail")->with('info',$info_output)->with('comments',$comment);
 
 
     }
+
+
+    public function postFavorite($id){
+        $user = Auth::user();
+        if (empty($user)) {
+            return Redirect::to("/auth/login")
+                ->withErrors(["login.failed" => "请先登录"]);
+            }else{
+
+            $uid = $user ->id;
+            $info = Information::find($id);
+            Log::debug($info);
+            $ufl = new UserFavorite();
+            $ufl_in_db = $ufl->whereUid($uid)->where('infor_id',$id)->get();
+            Log::debug($ufl_in_db);
+            if(count($ufl_in_db) != 0){
+                if(empty($ufl_in_db[0] -> deleted_at)){
+                    $ufl_in_db[0] -> delete();
+                    $info -> favorite_count =  $info -> favorite_count - 1;  //取赞
+                    $info -> save();
+                }else{
+                    UserFavorite::withTrashed()->where("id", $ufl_in_db[0]->id)->restore();
+                    $info -> favorite_count =  $info -> favorite_count + 1;  //点赞
+                    $info -> save();
+                }
+
+            }else{
+                Log::debug('favorite_count:'.$info -> favorite_count);
+                $info -> favorite_count =  $info -> favorite_count + 1;  //点赞
+                $info -> save();
+
+                $ufl -> uid = $uid;
+                $ufl -> infor_id = $id;
+                $ufl -> save();
+            }
+            return $info -> favorite_count;
+
+        }
+    }
+
 
 }

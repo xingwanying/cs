@@ -39,7 +39,7 @@
                                     <input type="radio" name="gender" id="female" <?php if($user['gender'] == "女") echo "checked";?> value="2"/><label for="female"><span class="fa fa-venus" ></span>女孩子</label>
                                 </div>
                                 <div style="width: 180px;float: left;">
-                                    <input type="radio" name="gender" id="others"  <?php if($user['gender'] == "不详") echo "checked";?> value="0"/><label for="others">其<span class="fa fa-venus-mars" ></span>他</label>
+                                    <input type="radio" name="gender" id="others"  <?php if($user['gender'] == "不详" | $user['gender']==null) echo "checked";?> value="0"/><label for="others">其<span class="fa fa-venus-mars" ></span>他</label>
                                 </div>
                             </div>
                         </div>

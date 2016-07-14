@@ -46,10 +46,10 @@
                                         {{ $info['data'][$i]['comment_count'] }}
                                     </button>
                                     <!--点赞-->
-                                    <button type="button" id="like">
-                                        <span class="fa fa-heart-o" id="heart-o"></span>
-                                        <span class="fa fa-heart" id="heart" style="display: none"></span>
-                                        {{ $info['data'][$i]['favorite_count'] }}
+                                    <button type="button"  onclick="favorite({{$info['data'][$i]['id']}})">
+                                        <span class="fa fa-heart-o" id="heart-o" <?php if($info['data'][$i]['is_like'] != 0) echo "style='display: none'"; ?>></span>
+                                        <span class="fa fa-heart" id="heart" <?php if($info['data'][$i]['is_like'] == 0) echo "style='display: none'"; ?>></span>
+                                        <span id="like">{{ $info['data'][$i]['favorite_count'] }}</span>
                                     </button>
                                 </div>
                             </div>

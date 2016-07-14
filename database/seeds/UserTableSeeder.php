@@ -22,5 +22,21 @@ class UserTableSeeder extends Seeder
             'password' => Hash::make("123456"),
             'mobile' => '13800138000',
         ]);
+        User::create([
+            'id' => 2,
+            'role' => 0,
+            'name' => '游客1',
+            'email' => 'yyy@qq.com',
+            'password' => Hash::make("123456"),
+            'mobile' => '13800138000',
+        ]);
+        User::create([
+            'id' => 3,
+            'role' => 0,
+            'name' => '游客2',
+            'email' => 'yyy2@qq.com',
+            'password' => Hash::make("123456"),
+            'mobile' => '13800138000',
+        ]);
     }
 }

@@ -48,12 +48,6 @@ $(document).ready(function () {
         $("#infoTitle").text($("[name='title']").val());
     });
 
-    //点赞
-    $("#like").click(function () {
-        $("#heart-o").toggle();
-        $("#heart").toggle();
-    });
-
 });
 
 
@@ -151,8 +145,30 @@ function infoDelete() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            console.log(data);
             $('#refreshPart').html(data);
+        },
+        error: function (err) {
+            console.info(err);
+        }
+
+    });
+
+}
+
+function favorite(id) {
+    $.ajax({
+        method: "POST",
+        url:  "/information/favorite/" + id,
+        data: {
+            id: id
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            $('#like').text(data);
+            $("#heart-o").toggle();
+            $("#heart").toggle();
         },
         error: function (err) {
             console.info(err);
