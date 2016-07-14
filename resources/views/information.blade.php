@@ -55,7 +55,7 @@
                                 </h6>
                             </div>
                         </div>
-                       <div id="commentPart">
+                       <div id="commentPart{{$info['data'][$i]['id']}}" style="display: none">
 
                        </div>
 

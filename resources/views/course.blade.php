@@ -34,32 +34,7 @@
         </header>
         <section class="wrapper style5">
             <div class="inner">
-                <div class="card">
-
-                    <div class="row">
-                        <h3 class="inline" >基本信息</h3>
-                        <a href=" {{ url('user/edit') }}" class="inline"><i class="fa fa-pencil">修改资料</i></a>
-                    </div>
-                    <div class="row" >
-                        <div class="col-md-1"><p>昵称</p></div>
-                        <div class="col-md-6"><p>{{ $user['name'] }}</p></div>
-                    </div>
-                    <div class="row" >
-                        <div class="col-md-1"><p >性别</p></div>
-                        <div class="col-md-6"><p>{{ $user['gender'] }}</p></div>
-                    </div>
-                    <div class="row" >
-                        <div class="col-md-1"><p>邮箱</p></div>
-                        <div class="col-md-6"><p>{{ $user['email'] }}</p></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-1"><p>手机号</p></div>
-                        <div class="col-md-6"><p>{{ $user['mobile'] }}</p></div>
-                    </div>
-
-
-                </div>
-
+               <iframe src="$url"></iframe>
             </div>
         </section>
     </article>

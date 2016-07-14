@@ -65,26 +65,19 @@ function getId(id) {
 
 //评论
 function getComment(id){
-    $("#commentList" + id).slideToggle("3000");
-}
-
-function getToken() {
-    var email =  $("#email").val();
     $.ajax({
 
         method: "GET",
-        url:"http://www.certification.com:8888/mail/send?email="+email,
+        url:"/comment/show/"+ id,
         success: function (data) {
-            console.log(data);
-            $('#res').text(data);
+            $("#commentPart" + id).html(data);
+            $("#commentPart" + id).slideToggle("3000");
         },
         error:function( err ) {
             console.info( JSON.stringify(err));
         }
 
     });
-
-
 }
 
 //搜索
@@ -169,7 +162,6 @@ function infoDelete() {
 
 
 }
-
 
 function cancel(){
     window.location.replace('/information/show');

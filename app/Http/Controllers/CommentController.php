@@ -9,6 +9,7 @@ use DB, Hashids, Log, Redirect, Input, Config, Hash, Validator, Gate;
 use Auth;
 use App\Comment;
 use App\Information;
+use App\User;
 
 class CommentController extends Controller
 {
@@ -19,14 +20,17 @@ class CommentController extends Controller
                 ->withErrors(["login.failed" => "请先登录"]);
         }else {
             $comment = Comment::where('infor_id',$id)->get();
-            $user = User::find($comment->uid);
-            $comment['uname'] = $user -> name;
-            if(!$user-> avatar_img_url){
-                $comment['uavatar'] = null;
-            }else{
-                $comment['uavatar'] = Config::get("cuc.www_host") . '/' .$user-> avatar_img_url;
+            for($i=0;$i<count($comment);$i++){
+                $user = User::find($comment[$i]->uid);
+                $comment[$i]['uname'] = $user -> name;
+                if(!$user-> avatar_img_url){
+                    $comment[$i]['uavatar'] = null;
+                }else{
+                    $comment[$i]['uavatar'] = Config::get("cuc.www_host") . '/' .$user-> avatar_img_url;
+                }
             }
-            return view('comments')->with('comments',$comment);
+
+            return view('comments')->with('comments',$comment)->with("infor_id",$id);
         }
     }
     public function postStore(Request $request){
