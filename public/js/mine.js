@@ -172,6 +172,11 @@ function goBack(type){
     window.location.replace(url);
 }
 
+function goBackWork(type){
+    var url = '/information/info/0';
+    window.location.replace(url);
+}
+
 function goBackCMS(){
     var url = '/information/show';
     window.location.replace(url);

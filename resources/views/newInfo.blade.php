@@ -11,7 +11,7 @@
             <div class="inner">
                 <section>
                     <h2>图文编辑</h2>
-                    <form action="{{  url('information/create') }}" method="POST"  enctype="multipart/form-data">
+                    <form action="{{  url('user/create') }}" method="POST"  enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                         <div class="form-group">
                             <div class="btn btn-default btn-file">
@@ -32,7 +32,7 @@
                             <div class="12u$">
                                 <ul class="actions">
                                     <li><input type="submit" value="保存"></li>
-                                    <li><input onclick="cancel()" type="reset" value="取消" class="special"></li>
+                                    <li><input onclick="goBackWork()" type="reset" value="取消" class="special"></li>
                                 </ul>
                             </div>
                         </div>

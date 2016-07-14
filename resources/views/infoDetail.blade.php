@@ -17,11 +17,12 @@
             </h6>
             <h2 >{{ $info['title'] }}</h2>
             <h4>{{ $info['updated_at'] }}</h4>
+                <button onclick="goBack()" type="button">返回</button>
+
         </header>
 
         <section class="wrapper style5">
             <div class="inner">
-                <button onclick="goBack({{ $info['type'] }})" type="button">返回</button>
                 <section id="h5">
                     <?php echo $info['html_url']; ?>
                     <form action="{{  url('comment/store') }}" method="POST"  enctype="multipart/form-data">

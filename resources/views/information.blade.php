@@ -16,6 +16,13 @@
                 <h4 id="infoTitle">出国资讯</h4>
             @endif
             <p>CUC13计算机科学与技术</p>
+
+                    @if($info['type']== 0)
+                    <div style="margin-top: 1%">
+                        <a href="{{ url('user/create') }}" class="button default">发布我的作品</a>
+                    </div>
+                    @endif
+
         </header>
         <section class="wrapper style5">
             <div class="inner" style="padding: 0% 12% 0% 18%;">
