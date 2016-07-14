@@ -8,10 +8,28 @@ use Response,Form;
 use DB, Hashids, Log, Redirect, Input, Config, Hash, Validator, Gate;
 use Auth;
 use App\Comment;
+use App\Information;
 
 class CommentController extends Controller
 {
-   public function postStore(Request $request){
+    public function getShow($id){
+        $user = Auth::user();
+        if (empty($user)) {
+            return Redirect::to("/auth/login")
+                ->withErrors(["login.failed" => "请先登录"]);
+        }else {
+            $comment = Comment::where('infor_id',$id)->get();
+            $user = User::find($comment->uid);
+            $comment['uname'] = $user -> name;
+            if(!$user-> avatar_img_url){
+                $comment['uavatar'] = null;
+            }else{
+                $comment['uavatar'] = Config::get("cuc.www_host") . '/' .$user-> avatar_img_url;
+            }
+            return view('comments')->with('comments',$comment);
+        }
+    }
+    public function postStore(Request $request){
        $user = Auth::user();
        if (empty($user)) {
            return Redirect::to("/auth/login")
@@ -32,6 +50,11 @@ class CommentController extends Controller
                $vObject -> infor_id = $infor_id;
                $vObject -> content = $content;
                $vObject->save();
+
+               //图文对应评论数加一
+               $info = Information::find($infor_id);
+               $info -> comment_count  = $info -> comment_count + 1;
+               $info ->save();
                return Redirect::to("information/detail/" . $infor_id)->with('status', '恭喜小主评论成功!');
 
            } else {
