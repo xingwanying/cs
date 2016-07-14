@@ -69,7 +69,7 @@ class UserController extends Controller
                 ->withErrors(["login.failed" => "请先登录"]);
         }else {
             $rules = [
-                'mobile' => "max:2000",
+                'mobile' => "max:200",
                 'name' => "max:200",
                 'photo' => "image",
                 'gender' => "numeric",
@@ -79,7 +79,7 @@ class UserController extends Controller
                 $uploaded_img = $request->file('photo');
                 $name = $request->get("name");
                 $gender = $request->get("gender");
-                $mobile = $request->get("mobile");        //获取html文件的内容
+                $mobile = $request->get("mobile");
                     if ($uploaded_img) {
                         $input_img = $uploaded_img->getFileInfo();
 

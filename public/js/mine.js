@@ -53,17 +53,6 @@ $(document).ready(function () {
         $("#heart-o").toggle();
         $("#heart").toggle();
     });
-    //评论
-    $("#commemt").click(function () {
-        $("#commentinput").slideToggle("3000");
-    });
-    //发送评论
-    $("#sendcom").click(function () {
-        $("#commentinput").slideUp("3000");
-        // $("#commenttext").attr("value","");
-        $("#result").show();
-        $("#commenttext").val("");
-    });
 
 });
 
@@ -72,6 +61,11 @@ var Id; //获取模态框当前对应删除元素的id
 function getId(id) {
     // alert(id);
     Id = id;
+}
+
+//评论
+function getComment(id){
+    $("#commentList" + id).slideToggle("3000");
 }
 
 function getToken() {
@@ -175,21 +169,7 @@ function infoDelete() {
 
 
 }
-function getDetail(id){
-    $.ajax({
 
-        method: "GET",
-        url: "/information/detail/" + id,
-        success: function (data) {
-            $data = $(data);
-            $('#main').html($data).fadeIn();
-        },
-        error: function (err) {
-            console.info(err);
-        }
-
-    })
-}
 
 function cancel(){
     window.location.replace('/information/show');

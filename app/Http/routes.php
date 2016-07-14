@@ -39,4 +39,5 @@ Route::controllers([
     'information' => 'InformationController',
     'course' => 'CourseController',
     'user' => 'UserController',
+    'comment' => 'CommentController',
 ]);
