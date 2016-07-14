@@ -26,7 +26,7 @@
             </div>
             @if($user['role'] != 110)
                 <div style="margin-top: 1%">
-                    <a href="{{ url('information/activity') }}" class="button default">发动态</a>
+                    {{--<a href="{{ url('information/activity') }}" class="button default">发动态</a>--}}
                     <a href="{{ url('user/create') }}" class="button default">发作品</a>
                     <a href="{{ url('course/show') }}" class="button default">查课表</a>
                 </div>

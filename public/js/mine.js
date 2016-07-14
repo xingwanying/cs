@@ -166,6 +166,9 @@ function favorite(id) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
+            if(data == 403){
+                window.location.replace('/auth/login');
+            }
             $('#like').text(data);
             $("#heart-o").toggle();
             $("#heart").toggle();

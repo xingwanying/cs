@@ -419,8 +419,7 @@ class InformationController extends Controller
     public function postFavorite($id){
         $user = Auth::user();
         if (empty($user)) {
-            return Redirect::to("/auth/login")
-                ->withErrors(["login.failed" => "请先登录"]);
+            return 403;
             }else{
 
             $uid = $user ->id;

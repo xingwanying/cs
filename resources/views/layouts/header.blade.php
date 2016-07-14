@@ -36,7 +36,7 @@
                             <li><a href="{{ url('user/profile') }}"><i class='fa fa-user'></i>个人中心</a></li>
                             <li><a href="{{ url('information/info/1') }}"><i class='fa fa-bullhorn'></i>公告通知</a></li>
                             <li><a href="{{ url('information/info/0') }}"><i class='fa fa-anchor'></i>班级风采</a></li>
-                            <li><a href="{{ url('information/activity') }}"><i class='fa fa-group'></i>计科圈</a></li>
+                            {{--<li><a href="{{ url('information/activity') }}"><i class='fa fa-group'></i>计科圈</a></li>--}}
                             <li><a href="{{ url('information/info/2') }}"><i class='fa fa-info'></i>实习招聘</a></li>
                             <li><a href="{{ url('information/info/3') }}"><i class='fa fa-info'></i>考研资讯</a></li>
                             <li><a href="{{ url('information/info/4') }}"><i class='fa fa-info'></i>出国资讯</a></li>
@@ -47,7 +47,7 @@
                         <li><a href="{{ url('user/profile') }}"><i class='fa fa-user'></i>个人中心</a></li>
                         <li><a href="{{ url('information/info/1') }}"><i class='fa fa-bullhorn'></i>公告</a></li>
                         <li><a href="{{ url('information/info/0') }}"><i class='fa fa-anchor'></i>风采</a></li>
-                        <li><a href="{{ url('information/activity') }}"><i class='fa fa-group'></i>计科圈</a></li>
+                        {{--<li><a href="{{ url('information/activity') }}"><i class='fa fa-group'></i>计科圈</a></li>--}}
                         <li><a href="{{ url('information/info/2') }}"><i class='fa fa-info'></i>实习招聘</a></li>
                         <li><a href="{{ url('information/info/3') }}"><i class='fa fa-info'></i>考研资讯</a></li>
                         <li><a href="{{ url('information/info/4') }}"><i class='fa fa-info'></i>出国资讯</a></li>
