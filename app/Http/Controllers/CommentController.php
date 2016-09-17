@@ -36,8 +36,7 @@ class CommentController extends Controller
     public function postStore(Request $request){
        $user = Auth::user();
        if (empty($user)) {
-           return Redirect::to("/auth/login")
-               ->withErrors(["login.failed" => "请先登录"]);
+           return 503;
        }else {
            $rules = [
                'content' => "required|max:2000",
@@ -45,7 +44,6 @@ class CommentController extends Controller
            ];
            $infor_id = $request->get("infor_id");
            $content = $request->get("content");
-
            $validator = Validator::make($request->all(), $rules);   //验证输入信息的合法性
            if ($validator->passes()) {
 
@@ -59,10 +57,10 @@ class CommentController extends Controller
                $info = Information::find($infor_id);
                $info -> comment_count  = $info -> comment_count + 1;
                $info ->save();
-               return Redirect::to("information/detail/" . $infor_id)->with('status', '恭喜小主评论成功!');
+               return view("commentList");
 
            } else {
-               return Redirect::to("information/detail/" .$infor_id )->withErrors(["edit.failed" => "数据验证不通过"]);
+               return  "数据验证不通过";
 
            }
        }

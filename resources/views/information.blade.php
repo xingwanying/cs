@@ -30,11 +30,11 @@
                         @for( $i=0; $i<count($info['data']); $i++)
 
                         <div class="row">
-                            <a href= "getDetial{{ url('/information/detail/' . $info['data'][$i]['id'])}}"  class="col-md-3">
-                                 <span class="img left" >
-                                    <img src="{{ $info['data'][$i]['cover_img_url'] }}"/>
-                                </span>
-                            </a>
+
+                            <span class="img left" >
+                                <img src="{{ $info['data'][$i]['cover_img_url'] }}"/>
+                            </span>
+
                             <div class="col-md-7">
                                 <a href= "{{ url('/information/detail/' . $info['data'][$i]['id'])}}"  ><h2 style="margin: 0">{{ $info['data'][$i]['title'] }}</h2></a>
 

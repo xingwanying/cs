@@ -10,3 +10,7 @@
 /storage
 
 public/upload
+
+*.pptx
+
+doc/班级网站.pptx
